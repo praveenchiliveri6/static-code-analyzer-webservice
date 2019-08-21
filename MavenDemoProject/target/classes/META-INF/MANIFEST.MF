@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Built-By: 320065410
-Build-Jdk: 11
-Main-Class: com.philips.Standardclass
-Created-By: Maven Integration for Eclipse
-
