@@ -3,20 +3,31 @@
  */
 package com.philips;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import com.opencsv.CSVReader;
 
 @org.springframework.stereotype.Service
 public class Service {
-
-  public void createfile() throws IOException, InterruptedException {
-    final ProcessBuilder pb1 = new ProcessBuilder(Commands.javaagentcommand);
+  public void createfile(String command[]) throws IOException {
+    final ProcessBuilder pb1 = new ProcessBuilder(command);
     pb1.start();
-    Thread.sleep(5000);
-    final ProcessBuilder pb2 = new ProcessBuilder(Commands.javacommand);
-    pb2.start();
   }
+
+  public void createandextract(String command[]) throws IOException {
+    final ProcessBuilder pb1 = new ProcessBuilder(command);
+    final Process process = pb1.start();
+    final BufferedReader out = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    String s = null;
+    while ((s = out.readLine()) != null) {
+      if (s.length() != 0) {
+        System.out.println(s);
+      }
+    }
+  }
+
 
   public double parsefile(String file) throws IOException {
     final FileReader filereader = new FileReader(file);
@@ -32,8 +43,7 @@ public class Service {
       return codecoverage;
     } catch (final Exception e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       filereader.close();
       csvReader.close();
     }

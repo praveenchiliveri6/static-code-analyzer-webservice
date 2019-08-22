@@ -50,7 +50,6 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

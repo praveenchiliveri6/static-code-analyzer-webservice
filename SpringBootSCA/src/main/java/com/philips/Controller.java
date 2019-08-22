@@ -14,9 +14,16 @@ public class Controller {
 
   @GetMapping(value="/coverage")
   public void codecoverage() throws IOException, InterruptedException {
-    service.createfile();
+    service.createfile(Commands.javaagentcommand);
+    Thread.sleep(5000);
+    service.createfile(Commands.javacommand);
     final double codecoverage=service.parsefile("C:\\jacoco-executable\\report2.csv");
     System.out.println("code coverage is: "+codecoverage*100);
+  }
+
+  @GetMapping(value="/test")
+  public void unittesting() throws IOException {
+    service.createandextract(Commands.testcommand);
   }
 
 }

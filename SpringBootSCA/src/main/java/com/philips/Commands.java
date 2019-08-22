@@ -15,4 +15,8 @@ public class Commands {
       "C:\\Users\\320065410\\eclipse-workspace\\MavenDemoProject\\src\\main\\java\\com\\philips",
       "--sourcefiles", "C:\\Users\\320065410\\eclipse-workspace\\MavenDemoProject\\src", "--csv",
   "C:\\jacoco-executable\\report2.csv"};
+  public static final String testcommand[]= { "java","-cp",
+      "C:\\Users\\320065410\\Downloads\\junit-4.12.jar;C:\\Users\\320065410\\Downloads\\hamcrest-core-1.3.jar;C:\\Users\\320065410\\eclipse-workspace\\MavenDemoProject\\target\\test-classes;C:\\Users\\320065410\\eclipse-workspace\\MavenDemoProject\\target\\classes",
+      "org.junit.runner.JUnitCore", "com.test.AppTest"
+  };
 }
