@@ -12,15 +12,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class  Parse{
-  static int no_of_issues;
+  public static int no_of_issues=0;
   public static ArrayList<ToolTwo> getToolTwoData(NodeList nList) {
     final ArrayList<ToolTwo> buglist = new ArrayList<>();
-    no_of_issues=nList.getLength();
     for (int temp = 0; temp < nList.getLength(); temp++) {
       final Node nNode = nList.item(temp);
       if (nNode.getNodeType() == Node.ELEMENT_NODE) {
         Element eElement = (Element) nNode;
         final NodeList violations = eElement.getElementsByTagName("violation");
+        no_of_issues+=violations.getLength();
         for (int count = 0; count < violations.getLength(); count++) {
           final ToolTwo f = new ToolTwo();
           final Node violationNode = violations.item(count);

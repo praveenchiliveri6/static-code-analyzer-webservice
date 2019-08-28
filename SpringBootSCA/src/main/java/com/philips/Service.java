@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+<<<<<<< HEAD
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
 import com.opencsv.CSVReader;
 
 @org.springframework.stereotype.Service
@@ -37,6 +41,31 @@ public class Service {
 
   public void updatevalue(String projectname, int value) {
     staticToolDaoImpl.update(projectname, value);
+<<<<<<< HEAD
+=======
+  }
+
+  public void runcommand(String[] command,String binPath) throws IOException, InterruptedException {
+    final ProcessBuilder pb = new ProcessBuilder(command);
+    pb.directory(new File(Commands.projectdir));
+    final Map<String, String> envMap = pb.environment();
+    String path = envMap.get("Path");
+    path += binPath;
+    envMap.put("Path", path);
+    final Process process = pb.start();
+    process.waitFor();
+  }
+
+  public int createfile(String command[]) throws IOException {
+    final ProcessBuilder pb1 = new ProcessBuilder(command);
+    final Process process = pb1.start();
+    try {
+      process.waitFor();
+    } catch (final InterruptedException e) {
+      e.printStackTrace();
+    }
+    return process.exitValue();
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
   }
 
   public int runcommand(String[] command, String binPath) {
@@ -70,14 +99,21 @@ public class Service {
     while ((s = out.readLine()) != null && s.charAt(0) != 'T') {
       ;
     }
+<<<<<<< HEAD
     if (s == null) {
+=======
+    if(s==null) {
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
       System.out.println("0 ms");
     } else {
       final double time = Double.parseDouble((String) s.subSequence(6, s.length()));
       System.out.println(time * 1000 + "ms");
     }
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
   public double parseCsvFile(String file) throws IOException {
     final FileReader filereader = new FileReader(file);
     final CSVReader csvReader = new CSVReader(filereader);
@@ -96,6 +132,7 @@ public class Service {
       csvReader.close();
     }
     return codecoverage * 100;
+<<<<<<< HEAD
   }
 
   public int parseTextFile(String str) throws IOException {
@@ -144,6 +181,24 @@ public class Service {
       return -1;
 
     }
+=======
+  }
+
+  public int parseTextFile(String str) throws IOException {
+    String line;
+    int count = 0;
+    final FileReader fr =
+        new FileReader("C:\\Users\\320065909\\Desktop\\security\\" + str + ".txt");
+    @SuppressWarnings("resource")
+    final BufferedReader br = new BufferedReader(fr);
+    while ((line = br.readLine()) != null) {
+      final String[] words = line.split(" ");
+      if (words[0].equals("Line:")) {
+        count++;
+      }
+    }
+    return count;
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
   }
 }
 

@@ -13,6 +13,7 @@ public class Commands {
   public static final String mavenbinpath =
       "C:\\Users\\320065410\\Downloads\\apache-maven-3.6.1-bin (1)\\apache-maven-3.6.1\\bin";
   public static final String vcgPath = "C:\\Program Files (x86)\\VisualCodeGrepper";
+<<<<<<< HEAD
   public static final String simianjarPath =
       "C:\\Users\\320065909\\Downloads\\bin\\simian-2.5.10.jar";
   public static String PmdBinPath = "C:\\pmd-bin-6.16.0\\pmd-bin-6.16.0\\bin";
@@ -25,10 +26,23 @@ public class Commands {
 
   public static String[] getduplicatecommand(String projectdir) {
     return new String[] {"cmd", "/c", "java", "-jar", simianjarPath, projectdir + "\\src\\*.java",
+=======
+  public static final String simianjarPath = "C:\\Users\\320065909\\Downloads\\bin\\simian-2.5.10.jar";
+  public static String[] getsecuritycommand(String projectdir,String projectname) {
+    return new String[] {"cmd", "/c", "VisualCodeGrepper.exe", "-c", "-l", "java",
+        "-t",projectdir,"--results",
+        "C:\\Users\\320065909\\Desktop\\security\\" +projectname+".txt"};
+  }
+
+  public static String[] getduplicatecommand(String projectdir) {
+    return new String[] {"cmd", "/c", "java", "-jar", simianjarPath,
+        projectdir+"\\src\\*.java",
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
     "C:\\Users\\320065909\\Desktop\\reports.xml"};
   }
 
   public static String[] getjavaagent(String projectdir) {
+<<<<<<< HEAD
     return new String[] {"cmd", "/c", "java", "-cp",
         "C:\\Users\\320065410\\Downloads\\junit-4.12.jar;C:\\Users\\320065410\\Downloads\\hamcrest-core-1.3.jar;"
             + projectdir + "\\target\\test-classes;" + projectdir + "\\target\\classes",
@@ -65,5 +79,29 @@ public class Commands {
   }
 
 
+=======
+    return new String []{"cmd", "/c", "java", "-cp",
+        "C:\\Users\\320065410\\Downloads\\junit-4.12.jar;C:\\Users\\320065410\\Downloads\\hamcrest-core-1.3.jar;"+projectdir+"\\target\\test-classes;"+projectdir+"\\target\\classes",
+        "-javaagent:C:\\Users\\320065410\\Downloads\\jacoco-0.8.4\\lib\\jacocoagent.jar=destfile=C:\\jacoco-executable\\jacoco.exec",
+        "org.junit.runner.JUnitCore", "com.test.AppTest"};
+  };
+
+  public static String[] getjavacommand(String projectdir) {
+    return new String []{"cmd", "/c", "java", "-jar",
+        "C:\\Users\\320065410\\Downloads\\jacoco-0.8.4\\lib\\jacococli.jar", "report",
+        "C:\\jacoco-executable\\jacoco.exec", "--classfiles",
+        projectdir+"\\target\\classes", "--sourcefiles",
+        projectdir+"\\src", "--csv",
+    "C:\\jacoco-executable\\report2.csv"};
+  }
+
+  public static String[] gettestcommand(String projecdir) {
+    return new String[] {"java", "-cp",
+        "C:\\Users\\320065410\\Downloads\\junit-4.12.jar;C:\\Users\\320065410\\Downloads\\hamcrest-core-1.3.jar;"+projectdir+"\\target\\test-classes;"+projectdir+"\\target\\classes",
+        "org.junit.runner.JUnitCore", "com.test.AppTest"};
+  }
+  //  public static final String[] securityCommand = {"cmd", "/c", "VisualCodeGrepper.exe", "-c", "-l",
+  //      "java", "-t", si.getSourceCode(), "--results", si.getDestPath() + "report.txt"};
+>>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
 
 }

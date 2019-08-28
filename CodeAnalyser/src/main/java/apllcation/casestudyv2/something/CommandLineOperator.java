@@ -4,8 +4,11 @@
 package apllcation.casestudyv2.something;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,14 +40,36 @@ public class CommandLineOperator {
   }
 
   public void consoleInteractor(String projectPath) throws IOException {
-    final Runtime r = Runtime.getRuntime();
-    final Process proc = r.exec(createCommand(projectPath));
+    final Set<String> set=new HashSet<>();
+    getClassContainingDirectories(projectPath,set);
+    for(final String paths :set)
+    {   final Runtime r = Runtime.getRuntime();
+    final Process proc = r.exec(createCommand(paths));
     final BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
     String s = null;
     while ((s = stdError.readLine()) != null) {
       System.out.println(s);
     }
+    }
   }
 
+
+  public static void getClassContainingDirectories(String projectpath, Set<String> x) {
+    final File dir=new File(projectpath);
+    try {
+      final File[] files = dir.listFiles();
+      for (final File file : files) {
+        final int length=file.getCanonicalPath().length();
+        if(file.getCanonicalPath().substring(length-5,length).equals("class")) {
+          x.add(file.getCanonicalPath().substring(0,file.getCanonicalPath().lastIndexOf("\\")));
+        } else if (file.isDirectory()) {
+          getClassContainingDirectories(projectpath,x);
+        }
+      }
+
+    } catch (final IOException e) {
+      e.printStackTrace();
+    }
+  }
 
 }

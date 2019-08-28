@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import apllcation.casestudyv2.something.CommandLineOperator;
+import apllcation.casestudyv2.something.Parse;
 import apllcation.casestudyv2.something.StaticToolAnalyzer;
 import apllcation.casestudyv2.something.Tool1TextFileReader;
 
@@ -30,10 +31,10 @@ public class AnalyserController {
   }
 
   @RequestMapping(value="/pmd")
-  public String getPmdReport() throws IOException, InterruptedException, ExecutionException
+  public int getPmdReport() throws IOException, InterruptedException, ExecutionException
   {
     final String projectpath="C:\\Users\\320066613\\eclipse-workspace\\com.philips.simpleApp";
     final String projectname=commandLineOperator.getProjectName(projectpath);
     staticToolAnalyser.generateReport(commandLineOperator.GetPmdCommand(projectpath, projectname),commandLineOperator.PmdBinPath , projectname);
-    return "yaY";}
+    return Parse.no_of_issues;}
 }
