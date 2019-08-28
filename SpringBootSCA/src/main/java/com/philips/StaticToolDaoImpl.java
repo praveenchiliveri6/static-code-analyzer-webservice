@@ -16,7 +16,6 @@ public class StaticToolDaoImpl implements StaticToolDao {
   public void insert(String projectname) {
     final String sql="insert into results values (?,?,?,?,?)";
     jdbctemplate.update(sql,new Object[] {projectname,-1,-1,-1,-1});
-
   }
 
   @Override
@@ -26,8 +25,26 @@ public class StaticToolDaoImpl implements StaticToolDao {
   }
 
   @Override
-  public void update(String projectname,int value) {
+  public void updatecoverage(String projectname,int value) {
     final String sql="update results set coverage=? where projectname=?";
+    jdbctemplate.update(sql,new Object[] {value,projectname});
+  }
+
+  @Override
+  public void updatesecurity(String projectname,int value) {
+    final String sql="update results set security=? where projectname=?";
+    jdbctemplate.update(sql,new Object[] {value,projectname });
+  }
+
+  @Override
+  public void updatewarnings(String projectname,int value) {
+    final String sql="update results set warnings=? where projectname=?";
+    jdbctemplate.update(sql,new Object[] {value,projectname });
+  }
+
+  @Override
+  public void updatecomplexity(String projectname,int value) {
+    final String sql="update results set complexity=? where projectname=?";
     jdbctemplate.update(sql,new Object[] {value,projectname });
   }
 

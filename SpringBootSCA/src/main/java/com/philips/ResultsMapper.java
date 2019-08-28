@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class ResultsMapper implements RowMapper<Results>{
 
-
   @Override
   public Results mapRow(ResultSet rs, int rowNum) throws SQLException {
     final Results result=new Results();

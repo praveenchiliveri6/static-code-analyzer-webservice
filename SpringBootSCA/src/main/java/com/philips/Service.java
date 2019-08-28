@@ -5,21 +5,13 @@ package com.philips;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Map;
-<<<<<<< HEAD
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
 import com.opencsv.CSVReader;
 
 @org.springframework.stereotype.Service
@@ -39,46 +31,62 @@ public class Service {
     return staticToolDaoImpl.get(projectname);
   }
 
-  public void updatevalue(String projectname, int value) {
-    staticToolDaoImpl.update(projectname, value);
-<<<<<<< HEAD
-=======
+  public void updatesecurity(String projectname, int value) {
+    staticToolDaoImpl.updatesecurity(projectname, value);
   }
 
-  public void runcommand(String[] command,String binPath) throws IOException, InterruptedException {
-    final ProcessBuilder pb = new ProcessBuilder(command);
-    pb.directory(new File(Commands.projectdir));
-    final Map<String, String> envMap = pb.environment();
-    String path = envMap.get("Path");
-    path += binPath;
-    envMap.put("Path", path);
-    final Process process = pb.start();
-    process.waitFor();
+  public void updatecomplexity(String projectname, int value) {
+    staticToolDaoImpl.updatecomplexity(projectname, value);
   }
 
-  public int createfile(String command[]) throws IOException {
-    final ProcessBuilder pb1 = new ProcessBuilder(command);
-    final Process process = pb1.start();
-    try {
-      process.waitFor();
-    } catch (final InterruptedException e) {
-      e.printStackTrace();
+  public void updatewarnings(String projectname, int value) {
+    staticToolDaoImpl.updatewarnings(projectname, value);
+  }
+
+  public void updatecoverage(String projectname, int value) {
+    staticToolDaoImpl.updatecoverage(projectname, value);
+  }
+
+  public void searchFilesInDirectory(final String pattern, final File folder, List<String> result) {
+    for (final File file : folder.listFiles()) {
+      if (file.isDirectory()) {
+        searchFilesInDirectory(pattern, file, result);
+      }
+      if (file.isFile() && file.getName().matches(pattern)) {
+        result.add(file.getAbsolutePath());
+      }
     }
-    return process.exitValue();
->>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
   }
 
+  public List<String> getAllClasses(List<String> allTests) {
+    final List<String> results=new ArrayList<>();
+    for(final String testFile : allTests) {
+      final String[] paths=testFile.split("\\\\");
+      boolean flag=false;
+      String pathvar="";
+      for(int i=0;i<paths.length-1;i++) {
+        if(paths[i].equals("test-classes")) {
+          flag=true;
+          i+=1;
+        }
+        if(flag) {
+          pathvar+=paths[i]+".";
+        }
+      }
+      paths[paths.length-1] = paths[paths.length-1].replace(".class", "");
+      pathvar+=paths[paths.length-1];
+      results.add(pathvar);
+    }
+    return results;
+
+  }
   public int runcommand(String[] command, String binPath) {
     final ProcessBuilder pb = new ProcessBuilder(command);
-    pb.directory(new File(Commands.projectdir));
-    final Map<String, String> envMap = pb.environment();
-    String path = envMap.get("Path");
-    path += binPath;
-    envMap.put("Path", path);
+    pb.directory(new File(binPath));
     Process process;
     try {
       process = pb.start();
-    } catch (final IOException e) {
+    } catch (final IOException e1) {
       return 1;
     }
     try {
@@ -89,33 +97,31 @@ public class Service {
     return process.exitValue();
   }
 
-
-
-  public void createandextract(String command[]) throws IOException {
+  public double createandextract(String command[]) {
     final ProcessBuilder pb1 = new ProcessBuilder(command);
-    final Process process = pb1.start();
-    final BufferedReader out = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    Process process;
     String s = null;
-    while ((s = out.readLine()) != null && s.charAt(0) != 'T') {
-      ;
+    try {
+      process = pb1.start();
+      final BufferedReader out =
+          new BufferedReader(new InputStreamReader(process.getInputStream()));
+      while ((s = out.readLine()) != null && s.charAt(0) != 'T') {
+        ;
+      }
+    } catch (final IOException e) {
+      return 0.0;
     }
-<<<<<<< HEAD
-    if (s == null) {
-=======
-    if(s==null) {
->>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
-      System.out.println("0 ms");
-    } else {
-      final double time = Double.parseDouble((String) s.subSequence(6, s.length()));
-      System.out.println(time * 1000 + "ms");
-    }
+    final double time = Double.parseDouble((String) s.subSequence(6, s.length()));
+    return time * 1000;
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
-  public double parseCsvFile(String file) throws IOException {
-    final FileReader filereader = new FileReader(file);
+  public double parseCsvFile(String file) throws IOException{
+    FileReader filereader;
+    try {
+      filereader = new FileReader(file);
+    } catch (final FileNotFoundException e1) {
+      return 0.0;
+    }
     final CSVReader csvReader = new CSVReader(filereader);
     double codecoverage = 0.0;
     try {
@@ -127,19 +133,21 @@ public class Service {
       }
     } catch (final Exception e) {
       e.printStackTrace();
-    } finally {
-      filereader.close();
-      csvReader.close();
     }
+
+    filereader.close();
+    csvReader.close();
+
+
     return codecoverage * 100;
-<<<<<<< HEAD
   }
 
-  public int parseTextFile(String str) throws IOException {
+  public int parseTextFile(String projectname) throws IOException {
     String line;
     int count = 0;
     final FileReader fr =
-        new FileReader("C:\\Users\\320065909\\Desktop\\security\\" + str + ".txt");
+        new FileReader(Commands.currentdir+"\\security\\" + projectname + ".txt");
+
     @SuppressWarnings("resource")
     final BufferedReader br = new BufferedReader(fr);
     while ((line = br.readLine()) != null) {
@@ -149,57 +157,5 @@ public class Service {
       }
     }
     return count;
-  }
-
-  public int parseXML(String projectname) {
-
-    try {
-      int noofissues = 0;
-      final File fXmlFile = new File("C:\\Users\\" + projectname + ".xml");
-      if (fXmlFile.exists()) {
-        final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        final DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        final Document doc = dBuilder.parse(fXmlFile);
-        final NodeList nList = doc.getElementsByTagName("file");
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-          final Node nNode = nList.item(temp);
-          if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-            final Element eElement = (Element) nNode;
-            final NodeList violations = eElement.getElementsByTagName("violation");
-            noofissues += violations.getLength();
-          }
-        }
-      } else {
-        System.out.println(" file is not created");
-        System.out.println("The possible reasons are :\n");
-        System.out.println("The user didn't install pmd in C: Drive.\n");
-        System.out.println("The user may have installed the different version of pmd"
-            + " other than we provided in README file.\n");
-      }
-      return noofissues;
-    } catch (final Exception e) {
-      return -1;
-
-    }
-=======
-  }
-
-  public int parseTextFile(String str) throws IOException {
-    String line;
-    int count = 0;
-    final FileReader fr =
-        new FileReader("C:\\Users\\320065909\\Desktop\\security\\" + str + ".txt");
-    @SuppressWarnings("resource")
-    final BufferedReader br = new BufferedReader(fr);
-    while ((line = br.readLine()) != null) {
-      final String[] words = line.split(" ");
-      if (words[0].equals("Line:")) {
-        count++;
-      }
-    }
-    return count;
->>>>>>> d5303bc0afd3f54798af7b35b53f0159f99b9dc1
   }
 }
-
-
