@@ -6,18 +6,28 @@ package com.philips;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@org.springframework.stereotype.Controller
+@Controller
 public class Controller {
   @Autowired
   Service service;
   @Autowired
   SourceInput si;
+  @Autowired
+  Commands commands;
+  @Autowired
+  Tool1TextFileReader tool1TextFileReader;
+  @Autowired
+  StaticToolAnalyzer staticToolAnalyzer;
 
   List<String> classnames;
 
@@ -88,4 +98,26 @@ public class Controller {
       System.out.println("No duplicates found");
     }
   }
+
+  @RequestMapping(value="/complexity",produces="application/json")
+  public void getComplexity(/*@RequestParamString projectpath*/) throws IOException
+  {
+    final String projectname="C:\\Users\\320066613\\eclipse-workspace\\com.philips.simpleApp";
+    commands.consoleInteractor(projectname);
+    final Set<String> set=new HashSet<>();
+    commands.getClassContainingDirectories(projectname, set);
+    for(final String s:set) {
+      tool1TextFileReader.extractTextDetails(commands.getProjectName(s));
+    }
+    System.out.println(tool1TextFileReader.getMaxiComplexity());
+  }
+
+  @RequestMapping(value="/pmd")
+  public void getPmdReport() throws IOException, InterruptedException, ExecutionException
+  {
+    final String projectpath="C:\\Users\\320066613\\eclipse-workspace\\com.philips.simpleApp";
+    final String projectname=commands.getProjectName(projectpath);
+    staticToolAnalyzer.generateReport(commands.GetPmdCommand(projectpath, projectname),commands.PmdBinPath , projectname);
+    System.out.println(Parse.no_of_issues);}
+
 }
