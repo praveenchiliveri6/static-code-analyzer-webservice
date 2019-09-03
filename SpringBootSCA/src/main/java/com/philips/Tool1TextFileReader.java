@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /*class to get the cyclometric complexity
@@ -21,18 +20,17 @@ import org.springframework.stereotype.Service;
 public class Tool1TextFileReader {
 
   int maxComplexity;
-  @Autowired
-  Tool1 tool1;
   // get details from the .txt file
   public void extractTextDetails(String projectname) {
     final File file = new File("C:\\cyvis-0.9\\" + projectname + ".txt");
     BufferedReader br;
     try {
       br = new BufferedReader(new FileReader(file));
+      final Map<String,Integer> functionMap=new HashMap<>();
       String st;
       while ((st = br.readLine()) != null) {
         final String splitCommand[] = st.split(",");
-        System.out.println(putTextFileOutput(splitCommand).toString());
+        putTextFileOutput(splitCommand,functionMap);
       }
     } catch (final Exception e) {
       e.printStackTrace();
@@ -42,10 +40,7 @@ public class Tool1TextFileReader {
   /*
    * get the details from the string, store it into a class object
    */
-  public Tool1 putTextFileOutput(String string[]) {
-    tool1.setPackagename(string[0]);
-    tool1.setClassname(string[1]);
-    final Map<String, Integer> map = new HashMap<>();
+  public Map<String,Integer> putTextFileOutput(String string[],Map<String,Integer> map) {
     int index = 2; // index of the elements in the text line
     System.out.println(string.length);
     while (index < string.length) {
@@ -53,9 +48,8 @@ public class Tool1TextFileReader {
       index = index + 4;
     }
     System.out.println(map);
-    tool1.setFunctions(map);
     maxComplexity=getMaxComplexity(map);
-    return tool1;
+    return map;
   }
 
   public int getMaxiComplexity()
