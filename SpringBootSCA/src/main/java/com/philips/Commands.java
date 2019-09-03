@@ -81,7 +81,7 @@ public class Commands {
   public static String[] getcyviscommand() {
     return new String[] { "cmd", "/c", "cd", currentdir+"\\files\\cyvis-0.9", "&&", "jar", "cf", "jar1.jar",
         projectdir, "&&", "java", "-jar",
-        "cyvis-0.9.jar", "-p", "jar1.jar", "-t", projectname+".txt" };
+        "cyvis-0.9.jar", "-p", "jar1.jar", "-t", currentdir+"\\complexityreport\\"+projectname+".txt" };
 
   }
 

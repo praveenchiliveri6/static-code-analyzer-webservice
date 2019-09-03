@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -79,21 +80,18 @@ public class Service {
 
   public List<String> getAllClasses(List<String> allTests) {
     final List<String> results = new ArrayList<>();
+
     for (final String testFile : allTests) {
       final String[] paths = testFile.split("\\\\");
-      boolean flag = false;
+      final List<String> list=Arrays.asList(paths);
+      final int x=list.indexOf("test-classes");
       String pathvar = "";
-      for (int i = 0; i < paths.length - 1; i++) {
-        if (paths[i].equals("test-classes")) {
-          flag = true;
-          i += 1;
-        }
-        if (flag) {
-          pathvar += paths[i] + ".";
-        }
+      for (int i = x+1; i < paths.length - 1; i++) {
+        pathvar += paths[i] + ".";
       }
       paths[paths.length - 1] = paths[paths.length - 1].replace(".class", "");
       pathvar += paths[paths.length - 1];
+      System.out.println(pathvar);
       results.add(pathvar);
     }
     return results;
@@ -215,7 +213,7 @@ public class Service {
 
   // get details from the .txt file
   public void extractTextDetails() {
-    final File file = new File("C:\\cyvis-0.9\\" + Commands.projectname + ".txt");
+    final File file = new File(Commands.currentdir+"\\complexityreport\\"+Commands.projectname + ".txt");
     BufferedReader br;
     try {
       br = new BufferedReader(new FileReader(file));
@@ -235,23 +233,21 @@ public class Service {
    */
   public Map<String,Integer> putTextFileOutput(String string[],Map<String,Integer> map) {
     int index = 2; // index of the elements in the text line
-    System.out.println(string.length);
     while (index < string.length) {
       map.put(string[index], Integer.parseInt(string[index + 1]));
       index = index + 4;
     }
-    System.out.println(map);
     maxComplexity=getMaxComplexity(map);
     return map;
   }
 
   public int getMaxiComplexity()
   {return maxComplexity;}
+
   // returns the maximum complexity in a class, using lambda functions
   public Integer getMaxComplexity(Map<String, Integer> map) {
     final Entry<String, Integer> maxEntry = Collections.max(map.entrySet(),
         (Entry<String, Integer> e1, Entry<String, Integer> e2) -> e1.getValue().compareTo(e2.getValue()));
-    System.out.println(maxEntry.getValue());
     return maxEntry.getValue();
   }
 
@@ -259,9 +255,9 @@ public class Service {
   public void consoleInteractor() throws IOException {
     final Set<String> set=new HashSet<>();
     getClassContainingDirectories(Commands.projectdir,set);
+
     for(final String paths :set)
     {
-      System.out.println(paths);
       final Runtime r = Runtime.getRuntime();
       final Process proc = r.exec(Commands.getcyviscommand());
       final BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
@@ -282,7 +278,7 @@ public class Service {
         for (final File file : files) {
           final int length=file.getCanonicalPath().length();
           if(file.getCanonicalPath().substring(length-5,length).equals("class")) {
-            set.add(file.getCanonicalPath().substring(0,file.getCanonicalPath().lastIndexOf("'\\'")));
+            set.add(file.getCanonicalPath().substring(0,file.getCanonicalPath().lastIndexOf("\\")));
           } else if (file.isDirectory()) {
             getClassContainingDirectories(file.getCanonicalPath(),set);
           }

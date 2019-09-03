@@ -32,26 +32,27 @@ public class Controller {
     Commands.setProjectname(projectname);
     Commands.setProjectdir(projectdir);
     Commands.setCurrentdir(System.getProperty("user.dir"));
-    int returnvalue;
-    returnvalue=service.runcommand(Commands.mavenclean, Commands.projectdir);
-    returnvalue=service.runcommand(Commands.mavencompile, Commands.projectdir);
-    returnvalue=service.runcommand(Commands.maventestcompile, Commands.projectdir);
-    returnvalue=service.runcommand(Commands.maveninstall, Commands.projectdir);
-    final File pomfile=new File(projectdir+"\\pom.xml");
-    if(returnvalue==1||!pomfile.exists()) {
-      System.out.println("Please give the maven project as input");
-      return "nogo";
-    }
+    final int returnvalue=0;
+    /*
+     * returnvalue=service.runcommand(Commands.mavenclean, Commands.projectdir);
+     * returnvalue=service.runcommand(Commands.mavencompile, Commands.projectdir);
+     * returnvalue=service.runcommand(Commands.maventestcompile, Commands.projectdir);
+     * returnvalue=service.runcommand(Commands.maveninstall, Commands.projectdir);
+     */final File pomfile=new File(projectdir+"\\pom.xml");
+     if(returnvalue==1||!pomfile.exists()) {
+       System.out.println("Please give the maven project as input");
+       return "nogo";
+     }
 
-    final List<String> resultFiles = new ArrayList<>();
-    service.searchFilesInDirectory(".*\\.class",
-        new File(Commands.projectdir + "/target/test-classes"), resultFiles);
-    classnames = service.getAllClasses(resultFiles);
+     final List<String> resultFiles = new ArrayList<>();
+     service.searchFilesInDirectory(".*\\.class",
+         new File(Commands.projectdir + "/target/test-classes"), resultFiles);
+     classnames = service.getAllClasses(resultFiles);
 
-    if (!service.checkforrow(Commands.projectname)) {
-      service.insert(Commands.projectname);
-    }
-    return "choose";
+     if (!service.checkforrow(Commands.projectname)) {
+       service.insert(Commands.projectname);
+     }
+     return "choose";
   }
 
   @GetMapping(value = "/coverage")
@@ -145,15 +146,22 @@ public class Controller {
   }
 
   @GetMapping(value="/complexity")
-  public void getComplexity() throws IOException
+  public String getComplexity() throws IOException
   {
+    int maxcomplexity=0;
     service.consoleInteractor();
     final Set<String> set=new HashSet<>();
-    service.getClassContainingDirectories(Commands.projectname, set);
+    service.getClassContainingDirectories(Commands.projectdir, set);
     for(final String s:set) {
       service.extractTextDetails();
+      maxcomplexity=Math.max(service.getMaxiComplexity(),maxcomplexity);
     }
-    System.out.println(service.getMaxiComplexity());
-
+    service.updatecomplexity(Commands.projectname,maxcomplexity);
+    if(maxcomplexity>3) {
+      return "nogo";
+    } else {
+      return "go";
+    }
   }
+
 }
