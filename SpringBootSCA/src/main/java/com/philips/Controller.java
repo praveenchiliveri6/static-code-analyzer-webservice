@@ -9,51 +9,53 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@RestController
+@org.springframework.stereotype.Controller
 public class Controller {
   @Autowired
   Service service;
   @Autowired
   SourceInput si;
-  @Autowired
-  Commands commands;
-  @Autowired
-  Tool1TextFileReader tool1TextFileReader;
-  @Autowired
-  StaticToolAnalyzer staticToolAnalyzer;
-
   List<String> classnames;
 
-  @PostMapping(path = "/start", consumes = "application/json")
-  public void compileandtest(@RequestBody SourceInput si) {
-    Commands.setProjectname(si.getProjectName());
-    Commands.setProjectdir(si.getSourceCodeDirectory());
+  @RequestMapping(value="/enter")
+  public String homepage() {
+    return "home";
+  }
+
+  @RequestMapping(value="/start")
+  public String compileandtest(@RequestParam("v1") String projectname,@RequestParam("v2") String projectdir) {
+    Commands.setProjectname(projectname);
+    Commands.setProjectdir(projectdir);
     Commands.setCurrentdir(System.getProperty("user.dir"));
+    int returnvalue;
+    returnvalue=service.runcommand(Commands.mavenclean, Commands.projectdir);
+    returnvalue=service.runcommand(Commands.mavencompile, Commands.projectdir);
+    returnvalue=service.runcommand(Commands.maventestcompile, Commands.projectdir);
+    returnvalue=service.runcommand(Commands.maveninstall, Commands.projectdir);
+    final File pomfile=new File(projectdir+"\\pom.xml");
+    if(returnvalue==1||!pomfile.exists()) {
+      System.out.println("Please give the maven project as input");
+      return "nogo";
+    }
+
     final List<String> resultFiles = new ArrayList<>();
     service.searchFilesInDirectory(".*\\.class",
         new File(Commands.projectdir + "/target/test-classes"), resultFiles);
     classnames = service.getAllClasses(resultFiles);
-    service.runcommand(Commands.mavenclean, Commands.projectdir);
-    service.runcommand(Commands.mavencompile, Commands.projectdir);
-    service.runcommand(Commands.maventestcompile, Commands.projectdir);
-    service.runcommand(Commands.maveninstall, Commands.projectdir);
+
     if (!service.checkforrow(Commands.projectname)) {
       service.insert(Commands.projectname);
     }
-
-
+    return "choose";
   }
 
   @GetMapping(value = "/coverage")
-  public void codecoverage() throws IOException {
+  public String codecoverage() throws IOException {
 
     for (final String classname : classnames) {
       service.runcommand(Commands.getjavaagent(classname), Commands.projectdir);
@@ -66,59 +68,92 @@ public class Controller {
     final int prevresult = result.getCodecoverage();
     service.updatecoverage(Commands.projectname, codecoverage);
     if (codecoverage <= 80) {
-      System.out.println("no go");
+      return "nogo";
     } else {
-      System.out.println("go");
       if (prevresult > codecoverage) {
         System.out.println("codecoverage is worse than the previous");
       }
+      return "go";
+
     }
   }
 
   @GetMapping(value = "/test")
-  public void unittesting() {
+  public String unittesting() {
+    boolean flag = true;
     for (final String classname : classnames) {
       final double time = service.createandextract(Commands.gettestcommand(classname));
+      if (time > 20) {
+        flag = false;
+      }
       System.out.println(time + "ms");
     }
+    if (flag) {
+      return "go";
+    } else {
+      return "nogo";
+    }
+
   }
 
   @GetMapping(value = "/security")
-  public void showReport() throws IOException {
-    service.runcommand(Commands.getsecuritycommand(), Commands.vcgPath);
-    service.parseTextFile(Commands.projectname);
-
+  public String showReport() throws IOException {
+    service.runcommand(Commands.getsecuritycommand(), Commands.getvcgpath());
+    final int count = service.parseTextFile(Commands.currentdir,Commands.projectname);
+    final Results result = service.getvalue(Commands.projectname);
+    final int prevcount = result.getSecurityvulnerability();
+    service.updatesecurity(Commands.projectname, count);
+    if (count != 0) {
+      return "nogo";
+    } else {
+      if (prevcount > count) {
+        System.out.println("security warnings are worse than the previous");
+      }
+      return "go";
+    }
   }
 
   @GetMapping("/duplicate")
-  public void showDuplicates() {
-    final int duplicate = service.runcommand(Commands.getduplicatecommand(), "");
+  public String showDuplicates() {
+    final int duplicate =
+        service.runcommand(Commands.getduplicatecommand(), Commands.getsimianpath());
     if (duplicate == 1) {
-      System.out.println("duplicates found");
+      return "go";
     } else {
-      System.out.println("No duplicates found");
+      return "nogo";
     }
   }
 
-  @RequestMapping(value="/complexity",produces="application/json")
-  public int getComplexity(/*@RequestParamString projectpath*/) throws IOException
+  @GetMapping(value = "/warnings")
+  public String getPmdReport() {
+    service.runcommand(Commands.getPmdCommand(), Commands.getpmdbinpath());
+    final int count = service.parseXmlFile();
+    final Results result = service.getvalue(Commands.projectname);
+    final int prevcount = result.getStaticwarnings();
+    service.updatewarnings(Commands.projectname, count);
+    if (count != 0) {
+      System.out.println("no go");
+      return "nogo";
+    } else {
+      if (prevcount > count) {
+        System.out.println("static warnings are worse than the previous");
+      }
+      System.out.println("go");
+      return "go";
+
+    }
+  }
+
+  @GetMapping(value="/complexity")
+  public void getComplexity() throws IOException
   {
-    final String projectname="C:\\Users\\320066613\\eclipse-workspace\\com.philips.simpleApp";
-    commands.consoleInteractor(projectname);
+    service.consoleInteractor();
     final Set<String> set=new HashSet<>();
-    commands.getClassContainingDirectories(projectname, set);
+    service.getClassContainingDirectories(Commands.projectname, set);
     for(final String s:set) {
-      tool1TextFileReader.extractTextDetails(commands.getProjectName(s));
+      service.extractTextDetails();
     }
-    return tool1TextFileReader.getMaxiComplexity();
+    System.out.println(service.getMaxiComplexity());
+
   }
-
-  @RequestMapping(value="/pmd")
-  public void getPmdReport() throws IOException, InterruptedException, ExecutionException
-  {
-    final String projectpath="C:\\Users\\320066613\\eclipse-workspace\\com.philips.simpleApp";
-    final String projectname=commands.getProjectName(projectpath);
-    staticToolAnalyzer.generateReport(commands.GetPmdCommand(projectpath, projectname),commands.PmdBinPath , projectname);
-    System.out.println(Parse.no_of_issues);}
-
 }
