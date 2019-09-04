@@ -1,0 +1,8 @@
+com.philips,Commands,getjavacommand,1,99,,getcyviscommand,1,90,,<clinit>,1,84,,getjavaagent,1,73,,getduplicatecommand,1,69,,getPmdCommand,1,59,,getsecuritycommand,1,55,,gettestcommand,1,44,,getsimianpath,1,10,,getvcgpath,1,10,,getpmdbinpath,1,10,,setProjectname,1,6,,setCurrentdir,1,6,,setProjectdir,1,6,,<init>,1,5,
+com.philips,StaticToolController,codecoverage,5,92,,unitTestTime,5,65,,securityVulnerabilities,4,59,,getUserDetails,3,81,,staticWarnings,3,71,,getComplexity,3,58,,duplicates,2,18,,<init>,1,5,,homepage,1,4,
+com.philips,StaticToolDaoImpl,getallrows,2,33,,insert,1,38,,updatecomplexity,1,23,,updatewarnings,1,23,,updatesecurity,1,23,,updatecoverage,1,23,,get,1,20,,<init>,1,5,
+com.philips,Results,setCodecoverage,1,7,,setSecurityvulnerability,1,7,,setStaticwarnings,1,7,,setCyclomaticcomplexity,1,7,,setProjectname,1,7,,getCodecoverage,1,5,,getSecurityvulnerability,1,5,,getStaticwarnings,1,5,,getCyclomaticcomplexity,1,5,,getProjectname,1,5,,<init>,1,5,
+com.philips,ResultsMapper,mapRow,2,39,,mapRow,2,7,,<init>,1,5,
+com.philips,SourceInput,setProjectName,1,7,,setSourceCodeDirectory,1,7,,getProjectName,1,5,,getSourceCodeDirectory,1,5,,<init>,1,5,
+com.philips,Application,main,1,8,,<init>,1,5,
+com.philips,StaticToolDao,updatewarnings,1,0,,updatecomplexity,1,0,,updatesecurity,1,0,,updatecoverage,1,0,,get,1,0,,getallrows,1,0,,insert,1,0,

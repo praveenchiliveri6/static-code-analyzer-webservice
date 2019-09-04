@@ -44,9 +44,9 @@ public class Commands {
         currentdir+"\\securityreport\\"+projectname+".txt"};
   }
 
-  public static String[] getduplicatecommand() {
+  public static String[] getduplicatecommand(int threshold) {
     return new String[] {"cmd", "/c", "java", "-jar", getsimianpath()+"\\simian-2.5.10.jar",
-        projectdir+"\\**\\*.java","-threshold=5","-formatter=plain",">",
+        projectdir+"\\**\\*.java","-threshold="+threshold,"-formatter=plain",">",
         currentdir+"\\duplicatereport\\"+projectname+".txt"};
   }
 

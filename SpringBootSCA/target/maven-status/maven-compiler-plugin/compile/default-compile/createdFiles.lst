@@ -1,4 +1,9 @@
+com\philips\SourceInput.class
 com\philips\Application.class
 com\philips\Commands.class
-com\philips\Service.class
-com\philips\Controller.class
+com\philips\ResultsMapper.class
+com\philips\StaticToolController.class
+com\philips\StaticToolDaoImpl.class
+com\philips\StaticToolDao.class
+com\philips\StaticToolService.class
+com\philips\Results.class
