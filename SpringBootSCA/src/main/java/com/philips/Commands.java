@@ -6,12 +6,16 @@ package com.philips;
 public class Commands {
 
   //Maven Commands
-  public static final String[] mavenclean = {"cmd", "/c", "mvn", "clean"};
-  public static final String[] mavencompile = {"cmd", "/c", "mvn", "compile"};
-  public static final String[] maventestcompile = {"cmd", "/c", "mvn", "test-compile"};
-  public static final String[] maveninstall = {"cmd", "/c", "mvn", "install"};
+  private Commands() {
+  }
+  protected static final String[] mavenclean = {"cmd", "/c","mvn", "clean"};
+  protected static final String[] mavencompile = {"cmd", "/c", "mvn", "compile"};
+  protected static final String[] maventestcompile = {"cmd", "/c", "mvn", "test-compile"};
+  protected static final String[] maveninstall = {"cmd", "/c", "mvn", "install"};
 
-  public static String projectdir="C:\\",currentdir,projectname;
+  protected static String projectdir="C:\\";
+  protected static String currentdir;
+  protected static String projectname;
 
   public static void setProjectdir(String dir) {
     projectdir=dir;

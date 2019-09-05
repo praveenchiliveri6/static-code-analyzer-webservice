@@ -2,7 +2,7 @@
 <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
-    version="6.16.0" timestamp="2019-09-04T16:56:30.904">
+    version="6.16.0" timestamp="2019-09-05T14:17:45.831">
 <file name="C:\Users\320065410\eclipse-workspace\ExampleWebApp\src\main\java\com\philips\Standardclass.java">
 <violation beginline="9" endline="9" begincolumn="8" endcolumn="11" rule="UnconditionalIfStatement" ruleset="Error Prone" package="com.philips" class="Standardclass" method="sayHelloWorld" externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_java_errorprone.html#unconditionalifstatement" priority="3">
 Do not use if statements that are always true or always false

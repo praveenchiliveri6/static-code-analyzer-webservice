@@ -33,19 +33,19 @@ public class StaticToolDaoImpl implements StaticToolDao {
   @Override
   public void updatesecurity(String projectname,int value) {
     final String sql="update results set security=? where projectname=?";
-    jdbctemplate.update(sql,new Object[] {value,projectname });
+    jdbctemplate.update(sql,new Object[] {value,projectname});
   }
 
   @Override
   public void updatewarnings(String projectname,int value) {
     final String sql="update results set warnings=? where projectname=?";
-    jdbctemplate.update(sql,new Object[] {value,projectname });
+    jdbctemplate.update(sql,new Object[] {value,projectname});
   }
 
   @Override
   public void updatecomplexity(String projectname,int value) {
     final String sql="update results set complexity=? where projectname=?";
-    jdbctemplate.update(sql,new Object[] {value,projectname });
+    jdbctemplate.update(sql,new Object[] {value,projectname});
   }
 
   @Override

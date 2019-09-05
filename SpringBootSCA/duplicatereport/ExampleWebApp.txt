@@ -7,4 +7,4 @@ Found 1 duplicate lines with fingerprint a64b13a40d8ad42876c7a068f7477cd8 in the
  Between lines 10 and 11 in C:\Users\320065410\eclipse-workspace\ExampleWebApp\src\test\java\com\test\AppTest.java
 Found 2 duplicate lines in 2 blocks in 2 files
 Processed a total of 20 significant (58 raw) lines in 3 files
-Processing time: 0.189sec
+Processing time: 0.073sec
