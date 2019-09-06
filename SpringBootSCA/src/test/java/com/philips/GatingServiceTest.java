@@ -12,25 +12,25 @@ public class GatingServiceTest {
   @Test
   public void checkForGateTestGo() {
     final String expected="go";
-    Assert.assertEquals(expected,gatingService.checkForGate(5, 4));
+    Assert.assertEquals(expected,gatingService.checkForGate(5, 6));
   }
 
   @Test
   public void checkForGateTestNoGo() {
     final String expected="nogo";
-    Assert.assertEquals(expected,gatingService.checkForGate(5, 6));
+    Assert.assertEquals(expected,gatingService.checkForGate(5, 4));
   }
 
   @Test
-  public void complexityGateTestGo() {
+  public void coverageGateTestGo() {
     final String expected="go";
-    Assert.assertEquals(expected,gatingService.complexityGate(5,6));
+    Assert.assertEquals(expected,gatingService.complexityGate(5,4));
   }
 
   @Test
-  public void complexityGateTestNoGo() {
+  public void coverageGateTestNoGo() {
     final String expected="nogo";
-    Assert.assertEquals(expected,gatingService.complexityGate(5,4));
+    Assert.assertEquals(expected,gatingService.complexityGate(5,6));
   }
 
   @Test
