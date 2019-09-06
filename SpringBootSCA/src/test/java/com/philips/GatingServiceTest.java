@@ -24,13 +24,13 @@ public class GatingServiceTest {
   @Test
   public void coverageGateTestGo() {
     final String expected="go";
-    Assert.assertEquals(expected,gatingService.complexityGate(5,4));
+    Assert.assertEquals(expected,gatingService.coverageGate(5,4));
   }
 
   @Test
   public void coverageGateTestNoGo() {
     final String expected="nogo";
-    Assert.assertEquals(expected,gatingService.complexityGate(5,6));
+    Assert.assertEquals(expected,gatingService.coverageGate(5,6));
   }
 
   @Test
