@@ -28,7 +28,6 @@
     <xsl:template match="/">
     <xsl:variable name="packages" 
                       select="Project/classes/Class[not(packageName=preceding-sibling::Class/packageName)]/packageName"/>
-	<xsl:param name="timestamp"/>
 	    <HTML>
 			    <HEAD>
 			    <STYLE>

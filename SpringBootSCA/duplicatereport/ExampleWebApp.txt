@@ -1,10 +1,7 @@
 Similarity Analyser 2.5.10 - http://www.harukizaemon.com/simian
 Copyright (c) 2003-2018 Simon Harris.  All rights reserved.
 Simian is not free unless used solely for non-commercial or evaluation purposes.
-{failOnDuplication=true, ignoreCharacterCase=true, ignoreCurlyBraces=true, ignoreIdentifierCase=true, ignoreModifiers=true, ignoreStringCase=true, threshold=1}
-Found 1 duplicate lines with fingerprint a64b13a40d8ad42876c7a068f7477cd8 in the following files:
- Between lines 10 and 12 in C:\Users\320065410\eclipse-workspace\ExampleWebApp\src\test\java\com\test\AppTest2.java
- Between lines 10 and 11 in C:\Users\320065410\eclipse-workspace\ExampleWebApp\src\test\java\com\test\AppTest.java
-Found 2 duplicate lines in 2 blocks in 2 files
+{failOnDuplication=true, ignoreCharacterCase=true, ignoreCurlyBraces=true, ignoreIdentifierCase=true, ignoreModifiers=true, ignoreStringCase=true, threshold=5}
+Found 0 duplicate lines in 0 blocks in 0 files
 Processed a total of 20 significant (58 raw) lines in 3 files
-Processing time: 0.073sec
+Processing time: 0.177sec

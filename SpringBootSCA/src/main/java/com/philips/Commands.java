@@ -6,12 +6,12 @@ package com.philips;
 public class Commands {
 
   //Maven Commands
-  private Commands() {
+  protected Commands() {
   }
-  protected static final String[] mavenclean = {"cmd", "/c","mvn", "clean"};
-  protected static final String[] mavencompile = {"cmd", "/c", "mvn", "compile"};
-  protected static final String[] maventestcompile = {"cmd", "/c", "mvn", "test-compile"};
-  protected static final String[] maveninstall = {"cmd", "/c", "mvn", "install"};
+  protected static final String[] mavenclean = {"cmd", "/c","start","mvn", "clean"};
+  protected static final String[] mavencompile = {"cmd", "/c","start", "mvn", "compile"};
+  protected static final String[] maventestcompile = {"cmd", "/c","start", "mvn", "test-compile"};
+  protected static final String[] maveninstall = {"cmd", "/c","start", "mvn", "install"};
 
   protected static String projectdir="C:\\";
   protected static String currentdir;
@@ -65,8 +65,9 @@ public class Commands {
     return new String []{"cmd", "/c","java", "-jar",
         currentdir+"\\files\\jacococli.jar", "report",
         currentdir+"\\jacoco-report\\jacoco-"+projectname+".exec", "--classfiles",
-        projectdir+"\\target\\classes", "--sourcefiles",
-        projectdir+"\\src", "--csv",
+        projectdir+"\\target\\classes","--classfiles",
+        projectdir+"\\target\\test-classes", "--sourcefiles",
+        projectdir+"\\src", "--sourcefiles" ,projectdir+"\\target" ,"--csv",
         currentdir+"\\jacoco-report\\"+projectname+".csv"};
   }
 
@@ -86,7 +87,6 @@ public class Commands {
     return new String[] { "cmd", "/c", "cd", currentdir+"\\files\\cyvis-0.9", "&&", "jar", "cf", "jar1.jar",
         projectdir, "&&", "java", "-jar",
         "cyvis-0.9.jar", "-p", "jar1.jar", "-t", currentdir+"\\complexityreport\\"+projectname+".txt" };
-
   }
 
 }

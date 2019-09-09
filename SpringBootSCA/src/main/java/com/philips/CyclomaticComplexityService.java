@@ -15,30 +15,30 @@ import java.util.Map.Entry;
 import org.springframework.stereotype.Service;
 @Service
 public class CyclomaticComplexityService {
+
   int maxComplexity=0;
   public void consoleInteractor() throws IOException {
     final Runtime r = Runtime.getRuntime();
     final Process proc = r.exec(Commands.getcyviscommand());
     final BufferedReader stdError =
         new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-    String s = null;
-    while ((s = stdError.readLine()) != null) {
-      System.out.println(s);
-    }
+    /*
+     * String s = null; while ((s = stdError.readLine()) != null) { System.out.println(s); }
+     */
   }
 
-  public void extractTextDetails() {
+  public void extractTextDetails() throws IOException {
     final File file =
         new File(Commands.currentdir + "\\complexityreport\\" + Commands.projectname + ".txt");
-    BufferedReader br;
+    final BufferedReader br=new BufferedReader(new FileReader(file));
     try {
-      br = new BufferedReader(new FileReader(file));
       final Map<String, Integer> functionMap = new HashMap<>();
       String st;
       while ((st = br.readLine()) != null) {
         final String[] splitCommand = st.split(",");
         putTextFileOutput(splitCommand, functionMap);
       }
+      br.close();
     } catch (final Exception e) {
       e.printStackTrace();
     }
@@ -49,6 +49,7 @@ public class CyclomaticComplexityService {
   }
 
   public Map<String, Integer> putTextFileOutput(String[] string, Map<String, Integer> map) {
+
     int index = 2;
     while (index < string.length) {
       map.put(string[index], Integer.parseInt(string[index + 1]));
@@ -58,13 +59,10 @@ public class CyclomaticComplexityService {
     return map;
   }
 
-  public Integer calculateMaxComplexity(Map<String, Integer> map) {
+  public int calculateMaxComplexity(Map<String, Integer> map) {
     final Entry<String, Integer> maxEntry =
         Collections.max(map.entrySet(), (Entry<String, Integer> e1, Entry<String, Integer> e2) -> e1
             .getValue().compareTo(e2.getValue()));
     return maxEntry.getValue();
   }
-
-
-
 }

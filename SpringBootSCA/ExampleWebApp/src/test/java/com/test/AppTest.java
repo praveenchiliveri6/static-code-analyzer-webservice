@@ -9,7 +9,7 @@ import com.philips.Standardclass;
 public class AppTest {
   Standardclass app=new Standardclass();
   @Test
-  public void Test1() {
+  public void testHelloWorld() {
     final String expected="helloworld";
     assertEquals(expected,app.sayHelloWorld());
   }

@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+SpringBootSCA Maven Webapp,com.philips,StaticToolController,354,0,10,0,67,0,14,0,9,0
+SpringBootSCA Maven Webapp,com.philips,StaticWarningsService,0,73,2,4,0,17,2,4,0,3
+SpringBootSCA Maven Webapp,com.philips,Results,0,38,0,0,0,16,0,11,0,11
+SpringBootSCA Maven Webapp,com.philips,ResultsMapper,0,34,0,0,0,8,0,2,0,2
+SpringBootSCA Maven Webapp,com.philips,GatingService,0,44,0,8,0,15,0,9,0,5
+SpringBootSCA Maven Webapp,com.philips,Commands,0,651,0,0,0,23,0,15,0,15
+SpringBootSCA Maven Webapp,com.philips,SecurityService,0,54,0,4,0,13,0,4,0,2
+SpringBootSCA Maven Webapp,com.philips,StaticToolDaoImpl,156,0,0,0,24,0,8,0,8,0
+SpringBootSCA Maven Webapp,com.philips,CyclomaticComplexityService,69,56,2,2,18,12,4,5,3,4
+SpringBootSCA Maven Webapp,com.philips,CodeCoverageService,0,63,1,3,0,15,1,3,0,2
+SpringBootSCA Maven Webapp,com.philips,Application,8,0,0,0,4,0,2,0,2,0
+SpringBootSCA Maven Webapp,com.philips,StaticToolService,47,197,3,13,14,39,10,13,8,7
+SpringBootSCA Maven Webapp,com.philips,UnitTestService,0,57,0,6,0,14,0,6,0,3

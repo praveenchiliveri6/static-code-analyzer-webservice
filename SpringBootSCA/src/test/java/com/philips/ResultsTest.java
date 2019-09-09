@@ -10,33 +10,33 @@ public class ResultsTest {
 
   Results results = new Results();
   @Test
-  public void ResultsTestProjectName() {
+  public void resultsTestProjectName() {
     results.setProjectname("Training");
     final String expected = "Training";
     Assert.assertEquals(expected,results.getProjectname());
   }
   @Test
-  public void ResultsTestComplexity() {
+  public void resultsTestComplexity() {
     results.setCyclomaticcomplexity(2);
     final int expected=2 ;
     Assert.assertEquals(expected,results.getCyclomaticcomplexity());
   }
   @Test
-  public void ResultsTestWarnings() {
+  public void resultsTestWarnings() {
     results.setStaticwarnings(3);
     final int expected=3;
     Assert.assertEquals(expected,results.getStaticwarnings());
   }
 
   @Test
-  public void ResultsTestSecurity() {
+  public void resultsTestSecurity() {
     results.setSecurityvulnerability(1);
     final int expected=1;
     Assert.assertEquals(expected,results.getSecurityvulnerability());
   }
   @Test
-  public void ResultsTestCoverage() {
-    results.setCodecoverage(60);;
+  public void resultsTestCoverage() {
+    results.setCodecoverage(60);
     final int expected=60;
     Assert.assertEquals(expected,results.getCodecoverage());
   }

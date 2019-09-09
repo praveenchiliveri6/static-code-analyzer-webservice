@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityService {
   public int parseTextFile(String currentdir,String projectname) throws IOException {
-    FileReader fr;
+
     final File f = new File(currentdir + "\\securityreport\\" + projectname + ".txt");
-    fr = new FileReader(f);
+    final FileReader fr = new FileReader(f);
     final BufferedReader br = new BufferedReader(fr);
     String line;
     int count = 0;
@@ -23,6 +23,8 @@ public class SecurityService {
         count++;
       }
     }
+    fr.close();
+    br.close();
     return count;
   }
 }

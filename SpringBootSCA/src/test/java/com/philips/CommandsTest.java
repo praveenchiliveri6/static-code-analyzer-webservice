@@ -94,8 +94,9 @@ public class CommandsTest {
     final String[] expected=new String []{"cmd", "/c","java", "-jar",
         Commands.currentdir+"\\files\\jacococli.jar", "report",
         Commands.currentdir+"\\jacoco-report\\jacoco-"+Commands.projectname+".exec", "--classfiles",
-        Commands.projectdir+"\\target\\classes", "--sourcefiles",
-        Commands.projectdir+"\\src", "--csv",
+        Commands.projectdir+"\\target\\classes","--classfiles",
+        Commands.projectdir+"\\target\\test-classes", "--sourcefiles",
+        Commands.projectdir+"\\src", "--sourcefiles" ,Commands.projectdir+"\\target" ,"--csv",
         Commands.currentdir+"\\jacoco-report\\"+Commands.projectname+".csv"};
     Assert.assertArrayEquals(expected,Commands.getjavacommand());
   }

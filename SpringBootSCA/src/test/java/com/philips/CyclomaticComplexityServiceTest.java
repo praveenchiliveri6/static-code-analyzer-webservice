@@ -20,7 +20,6 @@ public class CyclomaticComplexityServiceTest {
         + ",1,5,,getCname,1,5,,getId,1,5,";
     final String s1[]=s.split(",");
     final Map<String,Integer> map=new HashMap<>();
-    final String packagen=s1[0],classn=s1[1];
     int index = 2;
     while (index < s1.length) {
       map.put(s1[index], Integer.parseInt(s1[index + 1]));
