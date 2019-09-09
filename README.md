@@ -50,9 +50,8 @@ API Documentation :
 We used a swagger to figure out RESTFull endpoints i,e GET,POST and other requests.The link for the swagger is given below
 http://localhost:8080/swagger-ui.html#/
 
-However, it will work only on our local machine. For the same API document swagger to work on your machine, you need to dump 
-the entire code onto your eclipse IDE, run the application and then use the link with your localhost(with port number).
+For the same API document swagger to work on your machine, you need to dump run the batch file and then use the link with your localhost(with port number).
 
 AutoBuildTest.bat :
 
-This batch file will run all the maven commands along with simian(for duplicates) and jacoco(for code coverage).  
+This batch file will run all the maven commands along with simian(for duplicates) and jacoco(for code coverage).then,it runs the spring-boot application.  
