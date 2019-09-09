@@ -54,4 +54,4 @@ For the same API document swagger to work on your machine, you need to dump run 
 
 AutoBuildTest.bat :
 
-This batch file will run all the maven commands along with simian(for duplicates) and jacoco(for code coverage).then,it runs the spring-boot application.  
+This batch file will run all the maven commands along with simian(for duplicates) and jacoco(for code coverage).Then,it runs the spring-boot application.  
