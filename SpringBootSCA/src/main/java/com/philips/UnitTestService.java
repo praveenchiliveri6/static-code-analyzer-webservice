@@ -19,6 +19,7 @@ public class UnitTestService {
     while (s!= null && s.charAt(0) != 'T') {
       s = out.readLine();
     }
+    out.close();
     return s;
   }
 

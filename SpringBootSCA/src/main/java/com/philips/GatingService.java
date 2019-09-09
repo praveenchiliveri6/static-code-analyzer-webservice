@@ -11,21 +11,21 @@ public class GatingService {
   String go = "go";
 
   public String checkForGate(int currentvalue,int threshold) {
-    if(currentvalue<threshold) {
+    if(currentvalue < threshold) {
       return go;
     } else {
       return nogo;
     }
   }
-  
-  public String coverageGate(int cuurentvalue,int threshold) {
-    if(currentvalue > threshold){
+
+  public String coverageGate(int currentvalue,int threshold) {
+    if(currentvalue>threshold) {
       return go;
-    }
-    else{
+    } else {
       return nogo;
     }
-  }  
+  }
+
   public String unittestGate(boolean flag) {
     if(flag) {
       return go;

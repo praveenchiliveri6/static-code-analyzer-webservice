@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CyclomaticComplexityService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpringBootSCA Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.philips</a> &gt; <span class="el_source">CyclomaticComplexityService.java</span></div><h1>CyclomaticComplexityService.java</h1><pre class="source lang-java linenums">/*
+ * The copyright of this file belongs to Koninklijke Philips N.V., 2019.
+ */
+package com.philips;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import org.springframework.stereotype.Service;
+@Service
+<span class="fc" id="L17">public class CyclomaticComplexityService {</span>
+
+<span class="fc" id="L19">  int maxComplexity=0;</span>
+  public void consoleInteractor() throws IOException {
+<span class="nc" id="L21">    final Runtime r = Runtime.getRuntime();</span>
+<span class="nc" id="L22">    final Process proc = r.exec(Commands.getcyviscommand());</span>
+<span class="nc" id="L23">    final BufferedReader stdError =</span>
+<span class="nc" id="L24">        new BufferedReader(new InputStreamReader(proc.getErrorStream()));</span>
+    /*
+     * String s = null; while ((s = stdError.readLine()) != null) { System.out.println(s); }
+     */
+<span class="nc" id="L28">  }</span>
+
+  public void extractTextDetails() throws IOException {
+<span class="nc" id="L31">    final File file =</span>
+        new File(Commands.currentdir + &quot;\\complexityreport\\&quot; + Commands.projectname + &quot;.txt&quot;);
+<span class="nc" id="L33">    final BufferedReader br=new BufferedReader(new FileReader(file));</span>
+    try {
+<span class="nc" id="L35">      final Map&lt;String, Integer&gt; functionMap = new HashMap&lt;&gt;();</span>
+      String st;
+<span class="nc bnc" id="L37" title="All 2 branches missed.">      while ((st = br.readLine()) != null) {</span>
+<span class="nc" id="L38">        final String[] splitCommand = st.split(&quot;,&quot;);</span>
+<span class="nc" id="L39">        putTextFileOutput(splitCommand, functionMap);</span>
+<span class="nc" id="L40">      }</span>
+<span class="nc" id="L41">      br.close();</span>
+<span class="nc" id="L42">    } catch (final Exception e) {</span>
+<span class="nc" id="L43">      e.printStackTrace();</span>
+<span class="nc" id="L44">    }</span>
+<span class="nc" id="L45">  }</span>
+
+  public int getMaxComplexity() {
+<span class="nc" id="L48">    return maxComplexity;</span>
+  }
+
+  public Map&lt;String, Integer&gt; putTextFileOutput(String[] string, Map&lt;String, Integer&gt; map) {
+
+<span class="fc" id="L53">    int index = 2;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">    while (index &lt; string.length) {</span>
+<span class="fc" id="L55">      map.put(string[index], Integer.parseInt(string[index + 1]));</span>
+<span class="fc" id="L56">      index = index + 4;</span>
+    }
+<span class="fc" id="L58">    maxComplexity = calculateMaxComplexity(map);</span>
+<span class="fc" id="L59">    return map;</span>
+  }
+
+  public int calculateMaxComplexity(Map&lt;String, Integer&gt; map) {
+<span class="fc" id="L63">    final Entry&lt;String, Integer&gt; maxEntry =</span>
+<span class="fc" id="L64">        Collections.max(map.entrySet(), (Entry&lt;String, Integer&gt; e1, Entry&lt;String, Integer&gt; e2) -&gt; e1</span>
+<span class="fc" id="L65">            .getValue().compareTo(e2.getValue()));</span>
+<span class="fc" id="L66">    return maxEntry.getValue();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -44,7 +44,7 @@ public class StaticToolServiceTest {
   }
 
   @Test
-  public void StaticToolServiceRunCommandTest1() throws InterruptedException {
+  public void staticToolServiceRunCommandTest() throws InterruptedException {
     final int expected = 1;
     final String command[] = {"cmd", "/c", "echo hello"};
     Assert.assertEquals(expected, staticToolService.runCommandLineArgument(command, ""));
@@ -52,7 +52,7 @@ public class StaticToolServiceTest {
   }
 
   @Test
-  public void StaticToolServiceRunCommandTest2() throws InterruptedException {
+  public void staticToolServiceRunCommandTest2() throws InterruptedException {
     final int expected = 0;
     final String command[] = {"cmd", "/c", "echo hello"};
     Assert.assertEquals(expected, staticToolService.runCommandLineArgument(command, "C:\\"));
@@ -71,7 +71,7 @@ public class StaticToolServiceTest {
   public void searchFilesInSubDirectoryTest(){
     final List<String> resultFiles=new ArrayList<>();
     staticToolService.searchFilesInSubDirectory(".*\\.class",new File(System.getProperty("user.dir") + "/target/test-classes"), resultFiles);
-    Assert.assertTrue(resultFiles.size()!=0);
+    Assert.assertFalse(resultFiles.isEmpty());
   }
 
   @Test

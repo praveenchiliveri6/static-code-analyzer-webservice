@@ -6,12 +6,6 @@ package com.philips;
 public class Standardclass {
 
   public String sayHelloWorld() {
-    if(true) {
-      if(true) {
-        return "helloworld";
-
-      }
-    }
     return "helloworld";
   }
 

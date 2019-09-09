@@ -22,7 +22,7 @@ public class ResultsMapperTest {
   ResultsMapper resultMapper = new ResultsMapper();
 
   @Test
-  public void ResultMapperTest() throws SQLException {
+  public void resultMapperTest() throws SQLException {
 
     Mockito.when(resultSet.getString(1)).thenReturn("Training");
     Mockito.when(resultSet.getInt(2)).thenReturn(2);

@@ -2,18 +2,18 @@
  * The copyright of this file belongs to Koninklijke Philips N.V., 2019.
  */
 package com.philips;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-@org.springframework.stereotype.Controller
+@Controller
 public class StaticToolController {
+
   @Autowired
   StaticToolService service;
   @Autowired
@@ -30,13 +30,14 @@ public class StaticToolController {
   StaticWarningsService staticWarningsService;
   List<String> classnames;
 
-  @GetMapping(value = "/enter")
+  @GetMapping("/enter")
   public String homepage() {
     return "home";
   }
 
-  @GetMapping(value = "/start")
+  @GetMapping("/start")
   public String getUserDetails(@RequestParam("v1") String projectname,@RequestParam("v2") String projectdir) throws InterruptedException {
+
     Commands.setProjectname(projectname);
     Commands.setProjectdir(projectdir);
     Commands.setCurrentdir(System.getProperty("user.dir"));
@@ -46,31 +47,27 @@ public class StaticToolController {
       System.out.println("Give the maven Project as Input");
       return "invalidinput";
     }
-    final int returnvalue=0;
-    /*
-     * returnvalue=service.runCommandLineArgument(Commands.mavenclean, Commands.projectdir);
-     * returnvalue=service.runCommandLineArgument(Commands.mavencompile, Commands.projectdir);
-     * returnvalue=service.runCommandLineArgument(Commands.maventestcompile, Commands.projectdir);
-     * returnvalue=service.runCommandLineArgument(Commands.maveninstall, Commands.projectdir);
-     */
+    int returnvalue=0;
+
+    returnvalue=service.runCommandLineArgument(Commands.mavenclean, Commands.projectdir);
+    returnvalue=service.runCommandLineArgument(Commands.mavencompile, Commands.projectdir);
+    returnvalue=service.runCommandLineArgument(Commands.maventestcompile, Commands.projectdir);
+    returnvalue=service.runCommandLineArgument(Commands.maveninstall, Commands.projectdir);
+
     if (returnvalue == 1) {
       System.out.println("Build Failure on the given project");
       return "invalidinput";
     }
-
     final List<String> resultFiles = new ArrayList<>();
-    service.searchFilesInSubDirectory(".*\\.class",new File(Commands.projectdir + "/target/test-classes"), resultFiles);
+    service.searchFilesInSubDirectory(".*\\.class",new File(projectdir + "/target/test-classes"), resultFiles);
     classnames = service.getAllClassesWithPackage(resultFiles);
-
-    if (!service.checkforrow(Commands.projectname)) {
-      service.insert(Commands.projectname);
-    }
+    service.addRowIfNotExists(projectname);
     return "choosewithconfig";
   }
 
-  @GetMapping(value = "/coverage")
+  @GetMapping("/coverage")
   public String codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
-    final int threshold=service.compare(userconfig,service.propertiesFileReader("coveragethreshold"));
+    final int threshold=service.compare(userconfig,service.propertiesFileReader("coveragethreshold",Commands.currentdir));
     for (final String classname : classnames) {
       service.runCommandLineArgument(Commands.getjavaagent(classname), Commands.projectdir);
     }
@@ -82,26 +79,29 @@ public class StaticToolController {
      *
      */service.updatecoverage(Commands.projectname, codecoverage);
      System.out.println(codecoverage);
-     return gatingService.checkForGate(codecoverage, threshold);
+     return gatingService.coverageGate(codecoverage, threshold);
   }
 
-  @GetMapping(value = "/test")
+  @GetMapping("/test")
   public String unitTestTime(@RequestParam("item2") String userconfig,Model model) throws IOException, InterruptedException {
-    final int threshold=service.compare(userconfig,service.propertiesFileReader("unittesttimethreshold"));
+    final int threshold=service.compare(userconfig,service.propertiesFileReader("unittesttimethreshold",Commands.currentdir));
     boolean flag = true;
+    double maxtime=0.0;
     for (final String classname : classnames) {
       final String s = unitTestService.runCommand(Commands.gettestcommand(classname));
       final double time=unitTestService.parseString(s);
-      if (time > threshold) {
-        flag = false;
-      }
+      maxtime=Math.max(maxtime,time);
+      System.out.println(time);
+    }
+    if(maxtime>threshold) {
+      flag=false;
     }
     return gatingService.unittestGate(flag);
   }
 
-  @GetMapping(value = "/security")
+  @GetMapping("/security")
   public String securityVulnerabilities(@RequestParam("item4") String userconfig) throws IOException, InterruptedException {
-    final int threshold=service.compare(userconfig,service.propertiesFileReader("securityvulnerabilitythreshold"));
+    final int threshold=service.compare(userconfig,service.propertiesFileReader("securityvulnerabilitythreshold",Commands.currentdir));
     service.runCommandLineArgument(Commands.getsecuritycommand(), Commands.getvcgpath());
     final int vulnerabilitiescount = securityService.parseTextFile(Commands.currentdir, Commands.projectname);
     /*
@@ -116,14 +116,15 @@ public class StaticToolController {
 
   @GetMapping("/duplicate")
   public String duplicates(@RequestParam("item5") String userconfig) throws InterruptedException {
-    final int threshold=service.compare(userconfig,service.propertiesFileReader("duplicatethreshold"));
+    final int threshold=service.compare(userconfig,service.propertiesFileReader("duplicatethreshold",Commands.currentdir));
     final int duplicate =service.runCommandLineArgument(Commands.getduplicatecommand(threshold), Commands.getsimianpath());
+    System.out.println(duplicate);
     return gatingService.duplicateGate(duplicate);
   }
 
-  @GetMapping(value = "/warnings")
-  public String staticWarnings(@RequestParam("item1") String userconfig) throws InterruptedException {
-    final int threshold=service.compare(userconfig,service.propertiesFileReader("staticwarningsthreshold"));
+  @GetMapping("/warnings")
+  public String staticWarnings(@RequestParam("item1") String userconfig) throws Exception {
+    final int threshold=service.compare(userconfig,service.propertiesFileReader("staticwarningsthreshold",Commands.currentdir));
     service.runCommandLineArgument(Commands.getPmdCommand(), Commands.getpmdbinpath());
     final int staticwarningscount = staticWarningsService.parseXML(Commands.projectname, Commands.currentdir);
     System.out.println(staticwarningscount);
@@ -134,9 +135,9 @@ public class StaticToolController {
      return gatingService.checkForGate(staticwarningscount, threshold);
   }
 
-  @GetMapping(value = "/complexity")
+  @GetMapping("/complexity")
   public String getComplexity(@RequestParam("item3") String userconfig) throws IOException {
-    final int threshold=service.compare(userconfig,service.propertiesFileReader("cyclomaticcomplexitythreshold"));
+    final int threshold=service.compare(userconfig,service.propertiesFileReader("cyclomaticcomplexitythreshold",Commands.currentdir));
     int maxcomplexity = 0;
     complexityService.consoleInteractor();
     complexityService.extractTextDetails();

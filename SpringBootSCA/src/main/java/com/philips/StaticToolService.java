@@ -47,6 +47,9 @@ public class StaticToolService {
     staticToolDaoImpl.updatecoverage(projectname, value);
   }
 
+  public void addRowIfNotExists(String projectname) {
+    if (!checkforrow(projectname)) { insert(projectname); }
+  }
   public int runCommandLineArgument(String[] command, String binPath) throws InterruptedException {
     final ProcessBuilder pb = new ProcessBuilder(command);
     pb.directory(new File(binPath));
@@ -92,21 +95,20 @@ public class StaticToolService {
     return results;
 
   }
-  public String propertiesFileReader(String key) {
-    try (InputStream inStream = new FileInputStream(Commands.currentdir+"//src//main//resources//application.properties")) {
+  public String propertiesFileReader(String key,String currentdir) {
+    try (InputStream inStream = new FileInputStream(currentdir+"//src//main//resources//application.properties")) {
 
       final Properties prop = new Properties();
       prop.load(inStream);
       return prop.getProperty(key);
 
     } catch (final IOException io) {
-      io.printStackTrace();
+      return null;
     }
-    return null;
   }
 
   public int compare(String userconfig,String defaultValue) {
-    if(userconfig.equals("1000")) {
+    if("1000".equals(userconfig)) {
       return Integer.parseInt(defaultValue);
     } else {
       return Integer.parseInt(userconfig);

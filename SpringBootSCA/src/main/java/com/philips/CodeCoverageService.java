@@ -10,18 +10,21 @@ import com.opencsv.CSVReader;
 @Service
 public class CodeCoverageService {
   public int parseCsvFile(String file) throws IOException {
-    FileReader filereader;
-    filereader = new FileReader(file);
+    final FileReader filereader= new FileReader(file);
     final CSVReader csvReader = new CSVReader(filereader);
     double codecoverage = 0.0;
     String[] nextRecord = csvReader.readNext();
-    if ((nextRecord = csvReader.readNext()) != null) {
-      final int instructionscovered = Integer.parseInt(nextRecord[4]);
-      final int instructionsmissed = Integer.parseInt(nextRecord[3]);
+    int instructionscovered=0;
+    int instructionsmissed=0;
+    while((nextRecord = csvReader.readNext()) != null) {
+      instructionscovered+= Integer.parseInt(nextRecord[4]);
+      instructionsmissed+= Integer.parseInt(nextRecord[3]);
+    }
+    if((instructionscovered + instructionsmissed)>0) {
       codecoverage = (double) instructionscovered / (instructionscovered + instructionsmissed);
     }
-    csvReader.close();
     filereader.close();
-    return (int)codecoverage * 100;
+    csvReader.close();
+    return (int)(codecoverage * 100);
   }
 }

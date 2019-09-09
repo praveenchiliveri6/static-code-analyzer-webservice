@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CodeCoverageService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SpringBootSCA Maven Webapp</a> &gt; <a href="index.source.html" class="el_package">com.philips</a> &gt; <span class="el_source">CodeCoverageService.java</span></div><h1>CodeCoverageService.java</h1><pre class="source lang-java linenums">/*
+ * The copyright of this file belongs to Koninklijke Philips N.V., 2019.
+ */
+package com.philips;
+
+import java.io.FileReader;
+import java.io.IOException;
+import org.springframework.stereotype.Service;
+import com.opencsv.CSVReader;
+@Service
+<span class="fc" id="L11">public class CodeCoverageService {</span>
+  public int parseCsvFile(String file) throws IOException {
+<span class="fc" id="L13">    final FileReader filereader= new FileReader(file);</span>
+<span class="fc" id="L14">    final CSVReader csvReader = new CSVReader(filereader);</span>
+<span class="fc" id="L15">    double codecoverage = 0.0;</span>
+<span class="fc" id="L16">    String[] nextRecord = csvReader.readNext();</span>
+<span class="fc" id="L17">    int instructionscovered=0;</span>
+<span class="fc" id="L18">    int instructionsmissed=0;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">    while((nextRecord = csvReader.readNext()) != null) {</span>
+<span class="fc" id="L20">      instructionscovered+= Integer.parseInt(nextRecord[4]);</span>
+<span class="fc" id="L21">      instructionsmissed+= Integer.parseInt(nextRecord[3]);</span>
+    }
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">    if((instructionscovered + instructionsmissed)&gt;0) {</span>
+<span class="fc" id="L24">      codecoverage = (double) instructionscovered / (instructionscovered + instructionsmissed);</span>
+    }
+<span class="fc" id="L26">    filereader.close();</span>
+<span class="fc" id="L27">    csvReader.close();</span>
+<span class="fc" id="L28">    return (int)(codecoverage * 100);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

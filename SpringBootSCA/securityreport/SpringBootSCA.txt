@@ -1,0 +1,174 @@
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 6 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\ExampleWebApp\src\main\java\com\philips\Standardclass.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 37 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 55 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTestTwo.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 89 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\Application.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - java.io.FileReader
+Line: 103 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.File
+Line: 103 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 108 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 117 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 118 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 120 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 121 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CodeCoverageService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 133 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\Commands.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - java.io.File
+Line: 226 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.FileReader
+Line: 227 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.File
+Line: 227 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 236 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - java.lang.Runtime.exec Gets Path from Variable
+Line: 241 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+The pathname used in the call appears to be loaded from a variable. Check the code manually to ensure that malicious filenames cannot be submitted by an attacker.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 275 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 276 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 297 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\GatingService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 338 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\Results.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 385 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\ResultsMapper.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - java.io.File
+Line: 406 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\SecurityService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.FileReader
+Line: 407 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\SecurityService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.File
+Line: 407 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\SecurityService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 411 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\SecurityService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 422 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\SecurityService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - java.io.File
+Line: 434 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolController.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 444 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolController.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 504 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolController.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 610 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - java.io.File
+Line: 669 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - FileInputStream
+Line: 670 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+This function acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.File
+Line: 670 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 681 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 749 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 751 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 752 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - FileInputStream
+Line: 762 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolService.java
+This function acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - java.io.File
+Line: 788 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticWarningsService.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 797 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticWarningsService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 819 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticWarningsService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 824 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticWarningsService.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 842 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\UnitTestService.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1007 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CodeCoverageServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 1013 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CodeCoverageServiceTest.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1026 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1165 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CyclomaticComplexityServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 1178 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CyclomaticComplexityServiceTest.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Operation on Primitive Data Type
+Line: 1179 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CyclomaticComplexityServiceTest.java
+The code appears to be carrying out a mathematical operation on a primitive data type. In some circumstances this can result in an overflow and unexpected behaviour. Check the code manually to determine the risk.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1213 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\GatingServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1281 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\ResultsMapperTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1319 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\ResultsTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1365 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\SecurityServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - java.io.File
+Line: 1378 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\StaticToolServiceTest.java
+This functionality acts as an entry point for external data and the code should be manually checked to ensure the data obtained is correctly validated and/or sanitised. Additionally, carefull checks/sanitisation should be applied in any situation where the user may be able to control or affect the filename.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1385 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\StaticToolServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1468 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\StaticWarningsServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.
+Potentially Unsafe Code - Public Class Not Declared as Final
+Line: 1487 - C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\UnitTestServiceTest.java
+The class is not declared as final as per OWASP recommendations. It is considered best practice to make classes final where possible and practical (i.e. It has no classes which inherit from it). Non-Final classes can allow an attacker to extend a class in a malicious manner. Manually inspect the code to determine whether or not it is practical to make this class final.

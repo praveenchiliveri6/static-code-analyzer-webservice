@@ -13,29 +13,24 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 @Service
 public class StaticWarningsService {
-  public int parseXML(String projectname, String currentdir) {
+  public int parseXML(String projectname, String currentdir) throws Exception {
     DocumentBuilderFactory dbFactory;
     DocumentBuilder dBuilder;
     Document doc;
     NodeList nList = null;
 
-    try {
-
-      final File fXmlFile = new File(currentdir + "\\Pmdreports\\" + projectname + ".xml");
-      if (fXmlFile.exists()) {
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dBuilder = dbFactory.newDocumentBuilder();
-        doc = dBuilder.parse(fXmlFile);
-        nList = doc.getElementsByTagName("file");
-      }
-
-
-    } catch (final Exception e) {
-      return -1;
-
+    final File fXmlFile = new File(currentdir + "\\Pmdreports\\" + projectname + ".xml");
+    if (fXmlFile.exists()) {
+      dbFactory = DocumentBuilderFactory.newInstance();
+      dBuilder = dbFactory.newDocumentBuilder();
+      doc = dBuilder.parse(fXmlFile);
+      nList = doc.getElementsByTagName("file");
     }
+
+
     return getNoOfWarnings(nList);
   }
+
 
   public int getNoOfWarnings(NodeList nList) {
     int noofissues = 0;
