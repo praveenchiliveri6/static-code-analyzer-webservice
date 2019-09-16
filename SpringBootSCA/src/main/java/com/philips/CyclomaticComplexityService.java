@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,16 +16,6 @@ import org.springframework.stereotype.Service;
 public class CyclomaticComplexityService {
 
   int maxComplexity=0;
-  public void consoleInteractor() throws IOException {
-    final Runtime r = Runtime.getRuntime();
-    final Process proc = r.exec(Commands.getcyviscommand());
-    final BufferedReader stdError =
-        new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-    /*
-     * String s = null; while ((s = stdError.readLine()) != null) { System.out.println(s); }
-     */
-  }
-
   public void extractTextDetails() throws IOException {
     final File file =
         new File(Commands.currentdir + "\\complexityreport\\" + Commands.projectname + ".txt");

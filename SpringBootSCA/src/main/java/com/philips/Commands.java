@@ -29,9 +29,6 @@ public class Commands {
     projectname=dir;
   }
 
-  public static String getProjectName(){
-    return projectname;
-  }
   public static String getpmdbinpath() {
     return currentdir+"\\files\\pmd-bin-6.16.0\\pmd-bin-6.16.0\\bin";
   }
@@ -65,7 +62,7 @@ public class Commands {
   }
 
   public static String[] getjavacommand() {
-    return new String []{"cmd", "/c","java", "-jar",
+    return new String []{"cmd", "/c","start","java", "-jar",
         currentdir+"\\files\\jacococli.jar", "report",
         currentdir+"\\jacoco-report\\jacoco-"+projectname+".exec", "--classfiles",
         projectdir+"\\target\\classes","--classfiles",
@@ -75,7 +72,7 @@ public class Commands {
   }
 
   public static String[] gettestcommand(String classname) {
-    return new String[] {"java", "-cp",
+    return new String[] {"cmd","/c","java", "-cp",
         currentdir+"\\files\\junit-4.12.jar;"+currentdir+"\\files\\hamcrest-core-1.3.jar;"+projectdir+"\\target\\test-classes;"+projectdir+"\\target\\classes",
         "org.junit.runner.JUnitCore", classname};
   }

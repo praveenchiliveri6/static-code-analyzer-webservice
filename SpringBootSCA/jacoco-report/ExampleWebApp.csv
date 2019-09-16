@@ -1,15 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-JaCoCo Coverage Report,com.philips,StaticToolController,411,0,10,0,87,0,16,0,11,0
-JaCoCo Coverage Report,com.philips,StaticWarningsService,73,0,6,0,17,0,6,0,3,0
-JaCoCo Coverage Report,com.philips,Results,45,0,0,0,19,0,13,0,13,0
-JaCoCo Coverage Report,com.philips,ResultsMapper,34,0,0,0,8,0,2,0,2,0
-JaCoCo Coverage Report,com.philips,GatingService,44,0,8,0,15,0,9,0,5,0
-JaCoCo Coverage Report,com.philips,Commands,653,0,0,0,24,0,16,0,16,0
-JaCoCo Coverage Report,com.philips,SecurityService,54,0,4,0,13,0,4,0,2,0
-JaCoCo Coverage Report,com.philips,StaticToolDaoImpl,156,0,0,0,24,0,8,0,8,0
-JaCoCo Coverage Report,com.philips,CyclomaticComplexityService,125,0,4,0,30,0,9,0,7,0
-JaCoCo Coverage Report,com.philips,CodeCoverageService,63,0,4,0,15,0,4,0,2,0
-JaCoCo Coverage Report,com.philips,Application,8,0,0,0,4,0,2,0,2,0
-JaCoCo Coverage Report,com.philips,Warnings,10,0,0,0,4,0,3,0,3,0
-JaCoCo Coverage Report,com.philips,StaticToolService,246,0,16,0,53,0,23,0,15,0
-JaCoCo Coverage Report,com.philips,UnitTestService,57,0,6,0,14,0,6,0,3,0
+JaCoCo Coverage Report,com.test,AppTest,0,16,0,0,0,5,0,2,0,2
+JaCoCo Coverage Report,com.test,AppTest2,0,16,0,0,0,5,0,2,0,2
+JaCoCo Coverage Report,com.philips,Standardclass,0,7,0,0,0,3,0,3,0,3

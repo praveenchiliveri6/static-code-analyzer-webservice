@@ -2,6 +2,9 @@ Similarity Analyser 2.5.10 - http://www.harukizaemon.com/simian
 Copyright (c) 2003-2018 Simon Harris.  All rights reserved.
 Simian is not free unless used solely for non-commercial or evaluation purposes.
 {failOnDuplication=true, ignoreCharacterCase=true, ignoreCurlyBraces=true, ignoreIdentifierCase=true, ignoreModifiers=true, ignoreStringCase=true, threshold=1}
+Found 1 duplicate lines with fingerprint 3c05b7b0280313610996b14dad40dcba in the following files:
+ Between lines 75 and 76 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\Commands.java
+ Between lines 58 and 59 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\Commands.java
 Found 1 duplicate lines with fingerprint b0d81c2eb7406470cbc36fe8846e4117 in the following files:
  Between lines 48 and 51 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
  Between lines 42 and 45 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
@@ -28,6 +31,9 @@ Found 2 duplicate lines with fingerprint 0513c2ef6ead4c4cc68a69aaf18ac66f in the
  Between lines 106 and 108 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
  Between lines 117 and 119 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
  Between lines 127 and 129 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
-Found 32 duplicate lines in 20 blocks in 7 files
-Processed a total of 745 significant (1360 raw) lines in 27 files
-Processing time: 0.522sec
+Found 4 duplicate lines with fingerprint 6cd047f4e87c09dab888031bfa770d08 in the following files:
+ Between lines 79 and 83 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 106 and 110 in C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+Found 38 duplicate lines in 22 blocks in 8 files
+Processed a total of 762 significant (1392 raw) lines in 28 files
+Processing time: 0.614sec

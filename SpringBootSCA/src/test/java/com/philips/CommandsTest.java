@@ -91,7 +91,7 @@ public class CommandsTest {
     Commands.setCurrentdir("C:\\Users");
     Commands.setProjectdir("C:\\Users");
     Commands.setProjectname("ExampleWebApp");
-    final String[] expected=new String []{"cmd", "/c","java", "-jar",
+    final String[] expected=new String []{"cmd", "/c","start","java", "-jar",
         Commands.currentdir+"\\files\\jacococli.jar", "report",
         Commands.currentdir+"\\jacoco-report\\jacoco-"+Commands.projectname+".exec", "--classfiles",
         Commands.projectdir+"\\target\\classes","--classfiles",
@@ -106,7 +106,7 @@ public class CommandsTest {
     Commands.setCurrentdir("C:\\Users");
     Commands.setProjectdir("C:\\Users");
     Commands.setProjectname("ExampleWebApp");
-    final String[] expected=new String[] {"java", "-cp",
+    final String[] expected=new String[] {"cmd","/c","java", "-cp",
         Commands.currentdir+"\\files\\junit-4.12.jar;"+Commands.currentdir+"\\files\\hamcrest-core-1.3.jar;"+Commands.projectdir+"\\target\\test-classes;"+Commands.projectdir+"\\target\\classes",
         "org.junit.runner.JUnitCore", "com.philips"};
     Assert.assertArrayEquals(expected,Commands.gettestcommand("com.philips"));
