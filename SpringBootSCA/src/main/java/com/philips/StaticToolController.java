@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-@Controller
+import org.springframework.web.bind.annotation.RestController;
+@RestController
 public class StaticToolController {
 
   @Autowired
@@ -28,6 +28,8 @@ public class StaticToolController {
   GatingService gatingService;
   @Autowired
   StaticWarningsService staticWarningsService;
+  @Autowired
+  Results result;
   List<String> classnames;
 
   @GetMapping("/enter")
@@ -48,7 +50,7 @@ public class StaticToolController {
       return "invalidinput";
     }
     int returnvalue=0;
-
+    result=service.getvalue(projectname);
     returnvalue=service.runCommandLineArgument(Commands.mavenclean, Commands.projectdir);
     returnvalue=service.runCommandLineArgument(Commands.mavencompile, Commands.projectdir);
     returnvalue=service.runCommandLineArgument(Commands.maventestcompile, Commands.projectdir);
@@ -66,24 +68,23 @@ public class StaticToolController {
   }
 
   @GetMapping("/coverage")
-  public String codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
+  public Warnings codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("coveragethreshold",Commands.currentdir));
     for (final String classname : classnames) {
       service.runCommandLineArgument(Commands.getjavaagent(classname), Commands.projectdir);
     }
     service.runCommandLineArgument(Commands.getjavacommand(), Commands.projectdir);
     final int codecoverage = codeCoverageService.parseCsvFile(Commands.currentdir + "\\jacoco-report\\" + Commands.projectname + ".csv");
-    /*
-     * final Results result = service.getvalue(Commands.projectname); final int prevresult =
-     * result.getCodecoverage();
-     *
-     */service.updatecoverage(Commands.projectname, codecoverage);
-     System.out.println(codecoverage);
-     return gatingService.coverageGate(codecoverage, threshold);
+    result.setCodecoverage(codecoverage);
+    final Warnings coverage=new Warnings();
+    coverage.setIssue(codecoverage);
+    service.updatecoverage(Commands.projectname, codecoverage);
+    System.out.println(codecoverage);
+    return coverage;
   }
 
   @GetMapping("/test")
-  public String unitTestTime(@RequestParam("item2") String userconfig,Model model) throws IOException, InterruptedException {
+  public Warnings unitTestTime(@RequestParam("item2") String userconfig,Model model) throws IOException, InterruptedException {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("unittesttimethreshold",Commands.currentdir));
     boolean flag = true;
     double maxtime=0.0;
@@ -96,55 +97,71 @@ public class StaticToolController {
     if(maxtime>threshold) {
       flag=false;
     }
-    return gatingService.unittestGate(flag);
+    final Warnings utt=new Warnings();
+    utt.setIssue((int)maxtime);
+    result.setUnitTestTime(maxtime);
+    return utt;
   }
 
   @GetMapping("/security")
-  public String securityVulnerabilities(@RequestParam("item4") String userconfig) throws IOException, InterruptedException {
+  public Warnings securityVulnerabilities(@RequestParam("item4") String userconfig) throws IOException, InterruptedException {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("securityvulnerabilitythreshold",Commands.currentdir));
     service.runCommandLineArgument(Commands.getsecuritycommand(), Commands.getvcgpath());
     final int vulnerabilitiescount = securityService.parseTextFile(Commands.currentdir, Commands.projectname);
-    /*
-     * final Results result = service.getvalue(Commands.projectname); final int previouscount =
-     * result.getSecurityvulnerability();
-     *
-     */
+    result.setSecurityvulnerability(vulnerabilitiescount);
     System.out.println(vulnerabilitiescount);
+    final Warnings security=new Warnings();
+    security.setIssue(vulnerabilitiescount);
     service.updatesecurity(Commands.projectname, vulnerabilitiescount);
-    return gatingService.checkForGate(vulnerabilitiescount, threshold);
+    return security;
   }
 
   @GetMapping("/duplicate")
-  public String duplicates(@RequestParam("item5") String userconfig) throws InterruptedException {
+  public Warnings duplicates(@RequestParam("item5") String userconfig) throws InterruptedException {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("duplicatethreshold",Commands.currentdir));
     final int duplicate =service.runCommandLineArgument(Commands.getduplicatecommand(threshold), Commands.getsimianpath());
     System.out.println(duplicate);
-    return gatingService.duplicateGate(duplicate);
+    final Warnings duplicacy=new Warnings();
+    duplicacy.setIssue(duplicate);
+    return duplicacy;
   }
 
   @GetMapping("/warnings")
-  public String staticWarnings(@RequestParam("item1") String userconfig) throws Exception {
+  public Warnings staticWarnings(@RequestParam("item1") String userconfig) throws Exception {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("staticwarningsthreshold",Commands.currentdir));
     service.runCommandLineArgument(Commands.getPmdCommand(), Commands.getpmdbinpath());
     final int staticwarningscount = staticWarningsService.parseXML(Commands.projectname, Commands.currentdir);
+    final Warnings staticWarnings=new Warnings();
+    staticWarnings.setIssue(staticwarningscount);
     System.out.println(staticwarningscount);
-    /*
-     * final Results result = service.getvalue(Commands.projectname);
-     * final int prevcount = result.getStaticwarnings();
-     */service.updatewarnings(Commands.projectname, staticwarningscount);
-     return gatingService.checkForGate(staticwarningscount, threshold);
+    result.setStaticwarnings(staticwarningscount);
+    service.updatewarnings(Commands.projectname, staticwarningscount);
+    return staticWarnings;
   }
 
   @GetMapping("/complexity")
-  public String getComplexity(@RequestParam("item3") String userconfig) throws IOException {
+  public Warnings getComplexity(@RequestParam("item3") String userconfig) throws IOException {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("cyclomaticcomplexitythreshold",Commands.currentdir));
     int maxcomplexity = 0;
+    final Warnings complexity=new Warnings();
     complexityService.consoleInteractor();
     complexityService.extractTextDetails();
     maxcomplexity = Math.max(complexityService.getMaxComplexity(), maxcomplexity);
+    result.setCyclomaticcomplexity(maxcomplexity);
     service.updatecomplexity(Commands.projectname, maxcomplexity);
     System.out.println(maxcomplexity);
-    return gatingService.checkForGate(maxcomplexity, threshold);
+    complexity.setIssue(complexityService.getMaxComplexity());
+    return complexity;
+  }
+
+  @GetMapping("/results")
+  public Results getResult()
+  {return result;}
+
+  @GetMapping("/bestresult")
+  public Results getBestResult()
+  {
+    return service.getvalue(Commands.getProjectName());
   }
 
 }

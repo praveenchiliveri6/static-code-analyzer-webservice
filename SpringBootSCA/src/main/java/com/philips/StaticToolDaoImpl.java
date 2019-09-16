@@ -61,4 +61,6 @@ public class StaticToolDaoImpl implements StaticToolDao {
     return result.getProjectname().equals(projectname);
   }
 
+
+
 }

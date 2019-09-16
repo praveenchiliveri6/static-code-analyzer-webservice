@@ -6,6 +6,7 @@ com\philips\Results.class
 com\philips\UnitTestService.class
 com\philips\Commands.class
 com\philips\ResultsMapper.class
+com\philips\Warnings.class
 com\philips\StaticToolController.class
 com\philips\StaticToolDaoImpl.class
 com\philips\StaticWarningsService.class

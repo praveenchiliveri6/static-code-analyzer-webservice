@@ -29,6 +29,9 @@ public class Commands {
     projectname=dir;
   }
 
+  public static String getProjectName(){
+    return projectname;
+  }
   public static String getpmdbinpath() {
     return currentdir+"\\files\\pmd-bin-6.16.0\\pmd-bin-6.16.0\\bin";
   }

@@ -3,12 +3,24 @@
  */
 package com.philips;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Results {
   String projectname;
   int cyclomaticcomplexity;
   int staticwarnings;
   int securityvulnerability;
   int codecoverage;
+  double unitTestTime;
+
+  public double getUnitTestTime()
+  {return unitTestTime;}
+
+  public void setUnitTestTime(double unitTestTime)
+  {
+    this.unitTestTime=unitTestTime;
+  }
   public String getProjectname() {
     return projectname;
   }

@@ -1,7 +1,56 @@
 Similarity Analyser 2.5.10 - http://www.harukizaemon.com/simian
 Copyright (c) 2003-2018 Simon Harris.  All rights reserved.
 Simian is not free unless used solely for non-commercial or evaluation purposes.
-{failOnDuplication=true, ignoreCharacterCase=true, ignoreCurlyBraces=true, ignoreIdentifierCase=true, ignoreModifiers=true, ignoreStringCase=true, threshold=5}
-Found 0 duplicate lines in 0 blocks in 0 files
-Processed a total of 20 significant (58 raw) lines in 3 files
-Processing time: 0.177sec
+{failOnDuplication=true, ignoreCharacterCase=true, ignoreCurlyBraces=true, ignoreIdentifierCase=true, ignoreModifiers=true, ignoreStringCase=true, threshold=2}
+Found 2 duplicate lines with fingerprint ea73c13d8dd7cc2c18d943673cd216ff in the following files:
+ Between lines 24 and 25 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+ Between lines 12 and 13 in C:\Workspaces\Boot\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTest2.java
+Found 2 duplicate lines with fingerprint 32ae5565bb78ed63f19b20cf7e04d017 in the following files:
+ Between lines 14 and 15 in C:\Workspaces\Boot\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTestTwo.java
+ Between lines 14 and 15 in C:\Workspaces\Boot\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTest2.java
+Found 2 duplicate lines with fingerprint 1f542671e2bf7cd94241f4ad2405efe7 in the following files:
+ Between lines 87 and 90 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+ Between lines 80 and 83 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+ Between lines 43 and 46 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+Found 2 duplicate lines with fingerprint 0a9405b1b6e2a58c92970791007eef92 in the following files:
+ Between lines 24 and 25 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\Results.java
+ Between lines 32 and 33 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\Commands.java
+Found 2 duplicate lines with fingerprint b0d81c2eb7406470cbc36fe8846e4117 in the following files:
+ Between lines 48 and 51 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
+ Between lines 42 and 45 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
+ Between lines 36 and 39 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
+ Between lines 30 and 33 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\StaticToolDaoImpl.java
+Found 2 duplicate lines with fingerprint 66517c956af5fffad4388b3a10eb7612 in the following files:
+ Between lines 62 and 63 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+ Between lines 64 and 65 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\StaticToolServiceTest.java
+Found 2 duplicate lines with fingerprint 6a71c8cc4212b4caea697f88b866e914 in the following files:
+ Between lines 23 and 26 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\UnitTestServiceTest.java
+ Between lines 16 and 19 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\UnitTestServiceTest.java
+Found 2 duplicate lines with fingerprint a64b13a40d8ad42876c7a068f7477cd8 in the following files:
+ Between lines 10 and 12 in C:\Workspaces\Boot\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTestTwo.java
+ Between lines 10 and 12 in C:\Workspaces\Boot\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTest2.java
+ Between lines 10 and 11 in C:\Workspaces\Boot\SpringBootSCA\ExampleWebApp\src\test\java\com\test\AppTest.java
+Found 2 duplicate lines with fingerprint 5de5fb501b12709535cdb6c3e7f059e6 in the following files:
+ Between lines 57 and 60 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+ Between lines 50 and 53 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+Found 2 duplicate lines with fingerprint 53027ed819d9bbfa8c73e6a4a510f4fa in the following files:
+ Between lines 36 and 39 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+ Between lines 29 and 32 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\test\TestClass.java
+Found 3 duplicate lines with fingerprint ab1a44e25914a3d7ba4126ab832619d1 in the following files:
+ Between lines 15 and 17 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\GatingService.java
+ Between lines 23 and 25 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\GatingService.java
+ Between lines 31 and 33 in C:\Workspaces\Boot\SpringBootSCA\src\main\java\com\philips\GatingService.java
+Found 3 duplicate lines with fingerprint b6dc0ef29004a3c631961dd3870bd152 in the following files:
+ Between lines 20 and 24 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\StaticToolServiceTest.java
+ Between lines 28 and 32 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\StaticToolServiceTest.java
+Found 3 duplicate lines with fingerprint 0513c2ef6ead4c4cc68a69aaf18ac66f in the following files:
+ Between lines 56 and 58 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 67 and 69 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 79 and 81 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 91 and 93 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 106 and 108 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 117 and 119 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+ Between lines 127 and 129 in C:\Workspaces\Boot\SpringBootSCA\src\test\java\com\philips\CommandsTest.java
+Found 84 duplicate lines in 36 blocks in 11 files
+Processed a total of 858 significant (1545 raw) lines in 31 files
+Processing time: 0.266sec
