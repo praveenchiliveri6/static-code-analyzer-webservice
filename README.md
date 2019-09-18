@@ -7,7 +7,13 @@ The code analyser comprises of 6 different types of tools, which are-
 
 Simian Tool, for duplication in code- https://www.harukizaemon.com/simian/
 Jacoco, for code coverage- https://www.eclemma.org/jacoco/
+<<<<<<< HEAD
 Visual code grepper, for security vulnerablities- https://sourceforge.net/projects/visualcodegrepp/
+=======
+
+Visual code grepper, for security vulnerablities- https://github.com/nccgroup/VCG, For installation - http://zerosxones.blogspot.com/2017/05/static-code-analysis-visual-code-grepper_17.html 
+
+>>>>>>> a7c63efaa64a97d5bcda41ce86bd456468c1127d
 PMD, for static warnings-https://sourceforge.net/projects/pmd/
 Cyvis, for cyclometric complexity- http://cyvis.sourceforge.net/download.html
 

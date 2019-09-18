@@ -2,7 +2,7 @@
 <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
-    version="6.16.0" timestamp="2019-09-09T10:29:30.766">
+    version="6.16.0" timestamp="2019-09-16T21:03:36.439">
 <file name="C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\Application.java">
 <violation beginline="13" endline="21" begincolumn="26" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="com.philips" class="Application" externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_java_design.html#useutilityclass" priority="3">
 All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
@@ -28,10 +28,7 @@ Document empty constructor
 </violation>
 </file>
 <file name="C:\Users\320065410\eclipse-workspace\SpringBootSCA\src\main\java\com\philips\CyclomaticComplexityService.java">
-<violation beginline="23" endline="23" begincolumn="26" endcolumn="33" rule="CloseResource" ruleset="Error Prone" package="com.philips" class="CyclomaticComplexityService" method="consoleInteractor" variable="stdError" externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_java_errorprone.html#closeresource" priority="3">
-Ensure that resources like this BufferedReader object are closed after use
-</violation>
-<violation beginline="34" endline="34" begincolumn="26" endcolumn="27" rule="CloseResource" ruleset="Error Prone" package="com.philips" class="CyclomaticComplexityService" method="extractTextDetails" variable="br" externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_java_errorprone.html#closeresource" priority="3">
+<violation beginline="22" endline="22" begincolumn="26" endcolumn="27" rule="CloseResource" ruleset="Error Prone" package="com.philips" class="CyclomaticComplexityService" method="extractTextDetails" variable="br" externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_java_errorprone.html#closeresource" priority="3">
 Ensure that resources like this BufferedReader object are closed after use
 </violation>
 </file>
