@@ -3,12 +3,15 @@
  */
 package com.philips;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GatingService {
-  String nogo="nogo";
-  String go = "go";
+  JSONObject nogo{
+    "threshold":"nogo"
+  }
+  JSONObject go = "go";
 
   public String checkForGate(int currentvalue,int threshold) {
     if(currentvalue < threshold) {
@@ -18,7 +21,7 @@ public class GatingService {
     }
   }
 
-  public String coverageGate(int currentvalue,int threshold) {
+  public JSONObject coverageGate(int currentvalue,int threshold) {
     if(currentvalue>threshold) {
       return go;
     } else {

@@ -6,12 +6,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-@Controller
+import org.springframework.web.bind.annotation.RestController;
+@RestController
 public class StaticToolController {
 
   @Autowired
@@ -66,7 +67,7 @@ public class StaticToolController {
   }
 
   @GetMapping("/coverage")
-  public String codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
+  public JSONObject codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
     final int threshold=service.compare(userconfig,service.propertiesFileReader("coveragethreshold",Commands.currentdir));
     for (final String classname : classnames) {
       service.runCommandLineArgument(Commands.getjavaagent(classname), Commands.projectdir);
