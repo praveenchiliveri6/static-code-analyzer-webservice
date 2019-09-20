@@ -1,0 +1,24 @@
+<p>chat-comp works!</p>
+<div align='center'>
+<form ngForm (ngSubmit)='submit()' #messageForm='ngForm' align='center'>
+    Username:<input type='text' name='textusername' [(ngModel)]='username' #textusername="ngModel" required><br><br>
+    Message:<input type='text' name='textmessage' [(ngModel)]='message' #textmessage='ngModel' required><br><br>
+    <button type="submit">Submit</button>
+    </form>
+<div>
+    <div *ngFor='let strings of chat?.botReply; let i=index'>
+            <div class="container">
+                    <p>{{chat?.clientmsg[i]}}</p>
+                    <span class="time-right">{{hours}}:{{minutes}}</span>
+            </div>
+            <div class="container darker">
+                    <div *ngIf="chat?.clientmsg[i]=='ok show the product'">
+                        <button (click)="result(chat?.username)" >Results</button>
+                    </div>
+                   <p>{{strings}}</p>
+                   <span class="time-left">{{hours}}:{{minutes}}</span>
+            </div>
+            
+    </div>
+</div>
+</div>

@@ -1,0 +1,33 @@
+<div class = "container">
+        <div class="row">
+            <div *ngFor ="let prod of products" class="col-md-4 col-lg-3 ">
+                <div  appHover class="product">
+                    <div class="productHeader">
+                        {{prod.productName}}
+                    </div>
+                    <div class="productBody">
+                    <img src="assets\products_images\{{prod.productName}}.jpg" class="productImage">
+                    <div class="productfeatures"><br>Features<br></div>
+                    <div class="productinfo">
+                    Screen Type : {{prod.screenType}}<br>
+                    Screen Size : {{prod.screenSize}}<br>
+                    Basic Features : {{prod.basicfeatures}}<br>
+                    Addons : {{prod.addons}}
+                    </div>
+                    
+                    <li class="nav-item">
+                        <a  routerLink = "/products/add" class="nav-link" >
+                          <span class="fa fa-plus"></span> Add Interest
+                        </a>
+                      </li>
+                  
+                </div>
+                        
+                            
+                   
+                    
+               
+            </div>
+        </div>
+    </div>
+    

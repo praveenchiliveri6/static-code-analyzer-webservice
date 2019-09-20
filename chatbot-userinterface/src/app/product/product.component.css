@@ -1,0 +1,59 @@
+
+
+.product{
+    width: 50%;
+    border: 0.5px solid;
+    background-color: floralwhite;
+    
+
+}
+
+.productHeader{
+    background-color:green;
+    color: white;
+    font: bold 20pt verdana;
+    width:30%;
+    margin-left : 30%;
+    text-align: center;
+    
+
+
+}
+.productBody{
+    width : 100%;
+    
+}
+
+
+
+
+
+.productImage{
+    width: 30%;
+    margin-left: 30%;
+    
+}
+
+.productfeatures{
+    margin-left: 40%;
+    color:red;
+    font: bold 17px verdana;
+}
+
+.productinfo{
+  margin-left: 32%;
+  color: blue;
+  font:  italic 15px verdana;
+  width : 40%;
+  
+    
+}
+
+
+
+
+
+
+
+
+      
