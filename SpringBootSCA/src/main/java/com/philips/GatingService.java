@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GatingService {
-  JSONObject nogo{
-    "threshold":"nogo"
-  }
-  JSONObject go = "go";
+  String nogo="nogo";
+  String go = "go";
 
   public String checkForGate(int currentvalue,int threshold) {
     if(currentvalue < threshold) {
