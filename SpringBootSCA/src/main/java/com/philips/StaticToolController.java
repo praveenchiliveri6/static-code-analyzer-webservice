@@ -71,11 +71,8 @@ public class StaticToolController {
   }
 
   @GetMapping("/coverage")
-<<<<<<< HEAD
-  public JSONObject codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
-=======
   public ToolResult codecoverage(@RequestParam("item0") String userconfig) throws IOException, InterruptedException {
->>>>>>> a7c63efaa64a97d5bcda41ce86bd456468c1127d
+
     final int threshold=service.compare(userconfig,service.propertiesFileReader("coveragethreshold",Commands.currentdir));
     for (final String classname : classnames) {
       service.runCommandLineArgument(Commands.getjavaagent(classname), Commands.projectdir);
