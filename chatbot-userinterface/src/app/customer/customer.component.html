@@ -25,11 +25,12 @@
                 <input type="text" class="form-control" name="address" [(ngModel)]="customer.shippingAddress" #address="ngModel" required>
                 <div class="alert alert-danger" [hidden]="address.pristine || address.valid">Address is required</div>
               </div>
+          
   
       <div *ngIf="customer">
         <div class="pull-right">
-          <button class="btn btn-default" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;
-          <button type="submit" class="btn btn-success" (click) ="submit()" [disabled]="customerForm.pristine || !customerForm.valid">Submit</button>
+          <button type = "button" class = "btn btn-default" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-success" (click) ="submit()" [disabled]="customerForm.pristine || !customerForm.valid">Submit</button>
         </div>
       </div>
       <div class="alert alert-danger" *ngIf="errorMessage != null">{{ errorMessage }}</div>

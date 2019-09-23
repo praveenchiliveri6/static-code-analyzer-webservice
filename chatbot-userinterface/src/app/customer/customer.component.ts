@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClientService } from '../http-client.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class CustomerComponent implements OnInit {
     contactNo:"",
     email:"",
     shippingAddress:"",
+    productname:""
     
   };
   customerForm: NgForm;
@@ -26,19 +27,22 @@ export class CustomerComponent implements OnInit {
     private httpClientService : HttpClientService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      let name = params['pname'];
+      this.customer.productname=name;
+      console.log(this.customer.productname);
+  });
   }
 
   submit() {
     this.httpClientService.putCustomer(this.customer);
-    console.log(this.customer);
-    
     //this.router.navigate(['/products']);    
     
       
   }
   cancel(event: Event) {
     event.preventDefault();
-    this.router.navigate(['/products']);
+    //this.router.navigate(['/products']);
   }
 
 }

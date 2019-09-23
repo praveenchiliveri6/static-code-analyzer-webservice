@@ -4,6 +4,6 @@ export interface Customer {
     contactNo:string
     email : string;
     shippingAddress:string;
-    
+    productname:string;
     
 }

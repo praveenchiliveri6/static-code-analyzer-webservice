@@ -1,0 +1,22 @@
+<div>
+        <form  #customerForm="ngForm" class="customer-form"  novalidate>
+          <div class="form-group">
+            <label>User Name</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="userlogin.name" #username="ngModel" required>
+            <div class="alert alert-danger" [hidden]="username.pristine || username.valid">User Name is required</div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="userlogin.password" #password="ngModel" required>
+            <div class="alert alert-danger" [hidden]="password.pristine || password.valid">Password is required</div>
+          </div>
+          
+          <div *ngIf="userlogin">
+            <div class="pull-right">
+              <button type="button" class="btn btn-success" (click) ="submit()" [disabled]="customerForm.pristine || !customerForm.valid">Login</button>
+            </div>
+          </div>
+        </form>
+        <br />
+      </div>
+    

@@ -1,6 +1,6 @@
 <div class = "container">
     <div class="row">
-        <div *ngFor ="let product of products" class="col-md-4 col-lg-3 ">
+        <div *ngFor ="let product of products" class="col-md-6 col-lg-6">
             <div  appHover class="product">
                 <div class="productHeader">
                     {{product.name}}
@@ -15,11 +15,7 @@
                 Addons : {{product.add_ons}}
                 </div>
                 
-                <li class="nav-item">
-                    <a  routerLink = "add" class="nav-link" >
-                      <span class="fa fa-plus"></span> Add Interest
-                    </a>
-                  </li>
+               
               
             </div>
                     

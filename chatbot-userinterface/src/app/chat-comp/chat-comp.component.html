@@ -1,9 +1,9 @@
-<p>chat-comp works!</p>
-<div align='center'>
+
+<div align='center' class="form">
 <form ngForm (ngSubmit)='submit()' #messageForm='ngForm' align='center'>
     Username:<input type='text' name='textusername' [(ngModel)]='username' #textusername="ngModel" required><br><br>
     Message:<input type='text' name='textmessage' [(ngModel)]='message' #textmessage='ngModel' required><br><br>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
     </form>
 <div>
     <div *ngFor='let strings of chat?.botReply; let i=index'>
@@ -16,7 +16,7 @@
                         <button (click)="result(chat?.username)" >Results</button>
                     </div>
                    <p>{{strings}}</p>
-                   <span class="time-left">{{hours}}:{{minutes}}</span>
+                   <span class="time-right">{{hours}}:{{minutes}}</span>
             </div>
             
     </div>

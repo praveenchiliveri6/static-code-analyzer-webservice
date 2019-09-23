@@ -1,0 +1,47 @@
+<div class="view">
+                    <div class="container">
+                        <header>
+                            <h3><span class="fa fa-sign-in"></span> Sales Employee</h3>
+                        </header>
+                        <br />
+                        <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm)" class="login-form" novalidate>
+                            <div class="login">
+                                    <div class="row">
+                                            <div class="col-md-10"> 
+                 <select type="type" name="type" class="form-control" formControlName="option">
+                                                                    <option value="1">Select</option>
+                                                                    <option value="efficia_CM10">efficia_CM10</option>
+                                                                    <option value="efficia_CM12">efficia_CM12</option>
+                                                                    <option value="efficia_CM100">efficia_CM100</option>
+                                                                    <option value="efficia_CM120">efficia_CM120</option>
+                                                                    <option value="efficia_CM150">efficia_CM150</option>
+                                                                    <option value="Goldway_G30E">Goldway_G30E</option>
+                                                                    <option value="Goldway_G40E">Goldway_G40E</option>
+                                                                    <option value="IntelliVue_MX400">IntelliVue_MX400</option> 
+                        <option value="IntelliVue_MX450">IntelliVue_MX450</option>
+                                            <option value="IntelliVue_MX500">IntelliVue_MX500</option>
+                                            <option value="IntelliVue_MX550">IntelliVue_MX550</option>
+                                            <option value="IntelliVue_MX700">IntelliVue_MX700</option>
+                                            <option value="IntelliVue_MX800">IntelliVue_MX800</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            <br> 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Submit</button>
+                            </div>
+                        </div>
+                        <br />
+
+<div *ngFor ="let customer of customers" class="col-md-6 col-lg-6">
+            Customer name : {{customer.name}}<br>
+            Contact Number : {{customer.contactNo}}<br>
+            Email : {{customer.email}}<br>
+            Shipping Address : {{customer.shippingAddress}}
+    </div>
+
+                    </div>
+                </form>
+            </div>
+        </div> 

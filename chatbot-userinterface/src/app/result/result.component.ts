@@ -12,6 +12,7 @@ import { ProductResult } from '../ProductResult';
 export class ResultComponent implements OnInit {
   
   products : ProductResult[] = [];
+  product : ProductResult ;
   
 
   constructor(private router: Router,
@@ -25,6 +26,7 @@ export class ResultComponent implements OnInit {
       if (name !== null) {
             this.getResult(name);
       }
+      
     });
   }   
     
@@ -33,9 +35,16 @@ export class ResultComponent implements OnInit {
   getResult(name:string){
     this.httpClientService.getResult(name).subscribe((response) => {
       this.products=response;
-    console.log(this.products);  
+     
     });
-  }
+  }  
+
+  interest(product : ProductResult){
+    console.log(product.productName+"blah");
+    this.router.navigate([`products/${product.productName}`]);
+
+  }  
+  
 
   
 

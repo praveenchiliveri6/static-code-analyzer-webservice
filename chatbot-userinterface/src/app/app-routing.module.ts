@@ -5,6 +5,10 @@ import { ProductComponent } from './product/product.component';
 import { ResultComponent } from './result/result.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ChatCompComponent } from './chat-comp/chat-comp.component';
+import { SalesLoginComponent } from './sales-login/sales-login.component';
+import { SelectOptionsComponent } from './select-options/select-options.component';
+
+
 
 
 const routes: Routes = [
@@ -21,9 +25,19 @@ const routes: Routes = [
     component : ResultComponent
   },
   {
-    path: 'products/add',
+    path: 'products/:pname',
     component: CustomerComponent
+  },
+  {
+    path: 'login',
+    component: SalesLoginComponent
+  },
+  {
+    path: 'select',
+    component: SelectOptionsComponent
   }
+
+  
   
 ];
 

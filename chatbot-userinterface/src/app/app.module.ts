@@ -9,8 +9,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { HoverDirective } from './hover.directive';
 import { ResultComponent } from './result/result.component';
 import { CustomerComponent } from './customer/customer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatCompComponent } from './chat-comp/chat-comp.component';
+import { CustomerLoginComponent } from './customer-login/customer-login.component';
+import { SalesLoginComponent } from './sales-login/sales-login.component';
+import { SelectOptionsComponent } from './select-options/select-options.component';
+
+
 
 @NgModule({
   declarations: [
@@ -20,13 +25,19 @@ import { ChatCompComponent } from './chat-comp/chat-comp.component';
     HoverDirective,
     ResultComponent,
     CustomerComponent,
-    ChatCompComponent
+    ChatCompComponent,
+    CustomerLoginComponent,
+    SalesLoginComponent,
+    SelectOptionsComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
