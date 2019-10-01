@@ -12,7 +12,8 @@ Jacoco, for code coverage- https://www.eclemma.org/jacoco/
 Visual code grepper, for security vulnerablities- https://sourceforge.net/projects/visualcodegrepp/
 
 Visual code grepper, for security vulnerablities- https://github.com/nccgroup/VCG, 
-For installation - http://zerosxones.blogspot.com/2017/05/static-code-analysis-visual-code-grepper_17.html 
+
+(For installation - http://zerosxones.blogspot.com/2017/05/static-code-analysis-visual-code-grepper_17.html) 
 
 PMD, for static warnings-https://sourceforge.net/projects/pmd/
 
